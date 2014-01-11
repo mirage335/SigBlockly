@@ -1,0 +1,8 @@
+SigBlockly. See http://mirage335.dyndns.org/wiki/Category:SigBlockly .
+
+Derrived from BlocklyTemplate (https://github.com/mirage335/blocklyTemplate), which in turn is an overlay for blockly svn revision 1507 (svn checkout -r 1507 http://blockly.googlecode.com/svn/trunk/ blockly-read-only) .
+
+__Modification__
+1) Design block with blockfactory, insert results into blocks/[category].js and generators/[language]/[category].js .
+2) Edit templateSoyBuilder/templateSoyBlocks .
+3) Execute rebuild script.
