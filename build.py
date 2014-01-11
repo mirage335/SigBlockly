@@ -34,6 +34,8 @@
 #   python_compressed.js: The compressed Python generator.
 #   msg/js/<LANG>.js for every language <LANG> defined in msg/js/<LANG>.json.
 
+#Modified by mirage335. All modifications retain orignal license.
+
 import errno, glob, httplib, json, os, re, subprocess, sys, threading, urllib
 
 def import_path(fullpath):
@@ -148,8 +150,7 @@ class Gen_compressed(threading.Thread):
   def run(self):
     self.gen_core()
     self.gen_blocks()
-    self.gen_generator('javascript')
-    self.gen_generator('python')
+    self.gen_generator('c')
 
   def gen_core(self):
     target_filename = 'blockly_compressed.js'

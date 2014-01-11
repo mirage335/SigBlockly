@@ -263,6 +263,47 @@ Blockly.Blocks['logic_compare'] = {
   }
 };
 
+Blockly.Blocks['controls_switch'] = {
+  init: function() {
+    this.setHelpUrl('http://www.example.com/');
+    this.setColour(210);
+    this.appendValueInput("switchData")
+        .appendTitle("switch");
+    this.appendStatementInput("switchActions");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
+
+Blockly.Blocks['controls_case'] = {
+  init: function() {
+    this.setHelpUrl('http://www.example.com/');
+    this.setColour(210);
+    this.appendValueInput("caseData")
+        .appendTitle("case");
+    this.appendStatementInput("caseActions");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
+
+Blockly.Blocks['controls_casebreak'] = {
+  init: function() {
+    this.setHelpUrl('http://www.example.com/');
+    this.setColour(210);
+    this.appendDummyInput()
+        .appendTitle("break");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
+
 Blockly.Blocks['logic_operation'] = {
   // Logical operations: 'and', 'or'.
   init: function() {

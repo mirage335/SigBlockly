@@ -28,38 +28,30 @@ goog.provide('Blockly.Blocks.loops');
 goog.require('Blockly.Blocks');
 
 
-Blockly.Blocks['controls_repeat'] = {
-  // Repeat n times (internal number).
+Blockly.Blocks['controls_for'] = {
   init: function() {
-    this.setHelpUrl(Blockly.Msg.CONTROLS_REPEAT_HELPURL);
+    this.setHelpUrl('http://www.example.com/');
     this.setColour(120);
     this.appendDummyInput()
-        .appendTitle(Blockly.Msg.CONTROLS_REPEAT_TITLE_REPEAT)
-        .appendTitle(new Blockly.FieldTextInput('10',
-            Blockly.FieldTextInput.nonnegativeIntegerValidator), 'TIMES')
-        .appendTitle(Blockly.Msg.CONTROLS_REPEAT_TITLE_TIMES);
-    this.appendStatementInput('DO')
-        .appendTitle(Blockly.Msg.CONTROLS_REPEAT_INPUT_DO);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip(Blockly.Msg.CONTROLS_REPEAT_TOOLTIP);
-  }
-};
-
-Blockly.Blocks['controls_repeat_ext'] = {
-  // Repeat n times (external number).
-  init: function() {
-    this.setHelpUrl(Blockly.Msg.CONTROLS_REPEAT_HELPURL);
-    this.setColour(120);
-    this.interpolateMsg(Blockly.Msg.CONTROLS_REPEAT_TITLE,
-                        ['TIMES', 'Number', Blockly.ALIGN_RIGHT],
-                        Blockly.ALIGN_RIGHT);
-    this.appendStatementInput('DO')
-        .appendTitle(Blockly.Msg.CONTROLS_REPEAT_INPUT_DO);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
+        .appendTitle("for (")
+        .appendTitle(new Blockly.FieldTextInput("int"), "varType");
+    this.appendValueInput("var")
+        .setCheck("null");
+    this.appendValueInput("varInitValue")
+        .appendTitle("=");
+    this.appendDummyInput()
+        .appendTitle(";");
+    this.appendValueInput("condition");
+    this.appendDummyInput()
+        .appendTitle(";")
+        .appendTitle("variable")
+        .appendTitle(new Blockly.FieldTextInput("++"), "operator")
+        .appendTitle(")");
+    this.appendStatementInput("body");
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.CONTROLS_REPEAT_TOOLTIP);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
   }
 };
 
@@ -91,87 +83,19 @@ Blockly.Blocks['controls_whileUntil'] = {
   }
 };
 
-Blockly.Blocks['controls_for'] = {
-  // For loop.
+Blockly.Blocks['controls_dorepeat'] = {
   init: function() {
-    this.setHelpUrl(Blockly.Msg.CONTROLS_FOR_HELPURL);
+    this.setHelpUrl('http://www.example.com/');
     this.setColour(120);
-    this.appendDummyInput()
-        .appendTitle(Blockly.Msg.CONTROLS_FOR_INPUT_WITH)
-        .appendTitle(new Blockly.FieldVariable(null), 'VAR');
-    this.interpolateMsg(Blockly.Msg.CONTROLS_FOR_INPUT_FROM_TO_BY,
-                        ['FROM', 'Number', Blockly.ALIGN_RIGHT],
-                        ['TO', 'Number', Blockly.ALIGN_RIGHT],
-                        ['BY', 'Number', Blockly.ALIGN_RIGHT],
-                        Blockly.ALIGN_RIGHT);
-    this.appendStatementInput('DO')
-        .appendTitle(Blockly.Msg.CONTROLS_FOR_INPUT_DO);
+    this.appendStatementInput("doRepeatStatement")
+        .appendTitle("do");
+    this.appendValueInput("doRepeatValue")
+        .appendTitle("repeat")
+        .appendTitle("while");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setInputsInline(true);
-    // Assign 'this' to a variable for use in the tooltip closure below.
-    var thisBlock = this;
-    this.setTooltip(function() {
-      return Blockly.Msg.CONTROLS_FOR_TOOLTIP.replace('%1',
-          thisBlock.getTitleValue('VAR'));
-    });
-  },
-  getVars: function() {
-    return [this.getTitleValue('VAR')];
-  },
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
-      this.setTitleValue(newName, 'VAR');
-    }
-  },
-  customContextMenu: function(options) {
-    var option = {enabled: true};
-    var name = this.getTitleValue('VAR');
-    option.text = Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name);
-    var xmlTitle = goog.dom.createDom('title', null, name);
-    xmlTitle.setAttribute('name', 'VAR');
-    var xmlBlock = goog.dom.createDom('block', null, xmlTitle);
-    xmlBlock.setAttribute('type', 'variables_get');
-    option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
-    options.push(option);
+    this.setTooltip('');
   }
-};
-
-Blockly.Blocks['controls_forEach'] = {
-  // For each loop.
-  init: function() {
-    this.setHelpUrl(Blockly.Msg.CONTROLS_FOREACH_HELPURL);
-    this.setColour(120);
-    this.appendValueInput('LIST')
-        .setCheck('Array')
-        .appendTitle(Blockly.Msg.CONTROLS_FOREACH_INPUT_ITEM)
-        .appendTitle(new Blockly.FieldVariable(null), 'VAR')
-        .appendTitle(Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST);
-    if (Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST_TAIL) {
-      this.appendDummyInput()
-          .appendTitle(Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST_TAIL);
-      this.setInputsInline(true);
-    }
-    this.appendStatementInput('DO')
-        .appendTitle(Blockly.Msg.CONTROLS_FOREACH_INPUT_DO);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    // Assign 'this' to a variable for use in the tooltip closure below.
-    var thisBlock = this;
-    this.setTooltip(function() {
-      return Blockly.Msg.CONTROLS_FOREACH_TOOLTIP.replace('%1',
-          thisBlock.getTitleValue('VAR'));
-    });
-  },
-  getVars: function() {
-    return [this.getTitleValue('VAR')];
-  },
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
-      this.setTitleValue(newName, 'VAR');
-    }
-  },
-  customContextMenu: Blockly.Blocks['controls_for'].customContextMenu
 };
 
 Blockly.Blocks['controls_flow_statements'] = {
@@ -207,7 +131,6 @@ Blockly.Blocks['controls_flow_statements'] = {
     do {
       if (block.type == 'controls_repeat' ||
           block.type == 'controls_repeat_ext' ||
-          block.type == 'controls_forEach' ||
           block.type == 'controls_for' ||
           block.type == 'controls_whileUntil') {
         legal = true;

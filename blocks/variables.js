@@ -27,7 +27,6 @@ goog.provide('Blockly.Blocks.variables');
 
 goog.require('Blockly.Blocks');
 
-
 Blockly.Blocks['variables_get'] = {
   // Variable getter.
   init: function() {

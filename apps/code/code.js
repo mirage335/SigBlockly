@@ -23,8 +23,8 @@
  */
 
 // Supported languages.
-BlocklyApps.LANGUAGES = ['ar', 'en', 'de', 'el', 'es', 'fa', 'fr', 'hu', 'it',
-                         'nl', 'pt-br', 'ro', 'ru', 'sv', 'uk', 'vi',
+BlocklyApps.LANGUAGES = ['en', 'de', 'es', 'fa', 'fr', 'hu', 'it', 'pt-br',
+                         'ru', 'uk', 'vi',
                          'zh-hans', 'zh-hant', 'zh-tw'];
 BlocklyApps.LANG = BlocklyApps.getLang();
 
@@ -40,7 +40,7 @@ var Code = {};
  * List of tab names.
  * @private
  */
-Code.TABS_ = ['blocks', 'javascript', 'python', 'xml'];
+Code.TABS_ = ['blocks', 'c', 'xml'];
 
 Code.selected = 'blocks';
 
@@ -99,20 +99,12 @@ Code.renderContent = function() {
     var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
     xmlTextarea.value = xmlText;
     xmlTextarea.focus();
-  } else if (content.id == 'content_javascript') {
-    var code = Blockly.JavaScript.workspaceToCode();
+  } else if (content.id == 'content_c') {
+    code = Blockly.c.workspaceToCode();
     content.textContent = code;
     if (typeof prettyPrintOne == 'function') {
       code = content.innerHTML;
-      code = prettyPrintOne(code, 'js');
-      content.innerHTML = code;
-    }
-  } else if (content.id == 'content_python') {
-    code = Blockly.Python.workspaceToCode();
-    content.textContent = code;
-    if (typeof prettyPrintOne == 'function') {
-      code = content.innerHTML;
-      code = prettyPrintOne(code, 'py');
+      code = prettyPrintOne(code, 'c');
       content.innerHTML = code;
     }
   }
@@ -130,10 +122,6 @@ Code.init = function() {
       {path: '../../',
        rtl: rtl,
        toolbox: toolbox});
-
-  // Add to reserved word list: Local variables in execution evironment (runJS)
-  // and the infinite loop detection function.
-  Blockly.JavaScript.addReservedWords('code,timeouts,checkTimeout');
 
   var container = document.getElementById('content_area');
   var onresize = function(e) {
@@ -187,27 +175,6 @@ if (window.location.pathname.match(/readonly.html$/)) {
 } else {
   window.addEventListener('load', Code.init);
 }
-
-/**
- * Execute the user's code.
- * Just a quick and dirty eval.  Catch infinite loops.
- */
-Code.runJS = function() {
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = '  checkTimeout();\n';
-  var timeouts = 0;
-  var checkTimeout = function() {
-    if (timeouts++ > 1000000) {
-      throw BlocklyApps.getMsg('Code_timeout');
-    }
-  };
-  var code = Blockly.JavaScript.workspaceToCode();
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  try {
-    eval(code);
-  } catch (e) {
-    alert(BlocklyApps.getMsg('Code_badCode').replace('%1', e));
-  }
-};
 
 /**
  * Discard all blocks from the workspace.
