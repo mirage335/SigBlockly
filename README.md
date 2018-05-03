@@ -7,7 +7,9 @@ See license.gpl.txt for SigBlockly license conditions.
 Free Open Source Software (FOSS) direct graphical programming environment focused on realtime signal processing, control systems, and application integration.
 
 # Usage
+
 firefox ./c.html
+
 firefox ./bash.html
 
 # Design
