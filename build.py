@@ -207,6 +207,8 @@ class Gen_compressed(threading.Thread):
 
     if ('generators' in self.bundles):
       self.gen_generator("javascript")
+      self.gen_generator("c")
+      self.gen_generator("bash")
       self.gen_generator("python")
       self.gen_generator("php")
       self.gen_generator("lua")
