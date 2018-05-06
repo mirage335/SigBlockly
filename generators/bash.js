@@ -146,7 +146,7 @@ Blockly.bash.init = function(workspace) {
   /**
    * Empty loops or conditionals are not allowed in Python.
    */
-  Blockly.bash.PASS = this.INDENT + 'pass\n';
+  Blockly.bash.PASS = this.INDENT + 'true\n';
   // Create a dictionary of definitions to be printed before the code.
   Blockly.bash.definitions_ = Object.create(null);
   // Create a dictionary mapping desired function names in definitions_

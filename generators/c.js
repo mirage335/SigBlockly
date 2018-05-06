@@ -146,7 +146,7 @@ Blockly.c.init = function(workspace) {
   /**
    * Empty loops or conditionals are not allowed in Python.
    */
-  Blockly.c.PASS = this.INDENT + 'pass\n';
+  Blockly.c.PASS = this.INDENT + ';\n';
   // Create a dictionary of definitions to be printed before the code.
   Blockly.c.definitions_ = Object.create(null);
   // Create a dictionary mapping desired function names in definitions_

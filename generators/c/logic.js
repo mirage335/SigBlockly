@@ -35,10 +35,10 @@ Blockly.c['controls_if'] = function(block) {
   var code = '', branchCode, conditionCode;
   do {
     conditionCode = Blockly.c.valueToCode(block, 'IF' + n,
-        Blockly.c.ORDER_NONE) || 'False';
+        Blockly.c.ORDER_NONE) || 'false';
     branchCode = Blockly.c.statementToCode(block, 'DO' + n) ||
         Blockly.c.PASS;
-    code += (n == 0 ? 'if ' : 'elif ' ) + conditionCode + ':\n' + branchCode;
+    code += (n == 0 ? 'if (' : 'elif (' ) + conditionCode + ') {\n' + branchCode + '}\n';
 
     ++n;
   } while (block.getInput('IF' + n));
@@ -46,7 +46,7 @@ Blockly.c['controls_if'] = function(block) {
   if (block.getInput('ELSE')) {
     branchCode = Blockly.c.statementToCode(block, 'ELSE') ||
         Blockly.c.PASS;
-    code += 'else:\n' + branchCode;
+    code += 'else {\n' + branchCode + '}\n';
   }
   return code;
 };
@@ -73,18 +73,18 @@ Blockly.c['logic_compare'] = function(block) {
 
 Blockly.c['logic_operation'] = function(block) {
   // Operations 'and', 'or'.
-  var operator = (block.getFieldValue('OP') == 'AND') ? 'and' : 'or';
+  var operator = (block.getFieldValue('OP') == 'AND') ? '&&' : '||';
   var order = (operator == 'and') ? Blockly.c.ORDER_LOGICAL_AND :
       Blockly.c.ORDER_LOGICAL_OR;
   var argument0 = Blockly.c.valueToCode(block, 'A', order);
   var argument1 = Blockly.c.valueToCode(block, 'B', order);
   if (!argument0 && !argument1) {
     // If there are no arguments, then the return value is false.
-    argument0 = 'False';
-    argument1 = 'False';
+    argument0 = 'false';
+    argument1 = 'false';
   } else {
     // Single missing arguments have no effect on the return value.
-    var defaultArgument = (operator == 'and') ? 'True' : 'False';
+    var defaultArgument = (operator == '&&') ? 'true' : 'false';
     if (!argument0) {
       argument0 = defaultArgument;
     }
@@ -99,30 +99,30 @@ Blockly.c['logic_operation'] = function(block) {
 Blockly.c['logic_negate'] = function(block) {
   // Negation.
   var argument0 = Blockly.c.valueToCode(block, 'BOOL',
-      Blockly.c.ORDER_LOGICAL_NOT) || 'True';
-  var code = 'not ' + argument0;
+      Blockly.c.ORDER_LOGICAL_NOT) || 'true';
+  var code = '! ' + argument0;
   return [code, Blockly.c.ORDER_LOGICAL_NOT];
 };
 
 Blockly.c['logic_boolean'] = function(block) {
   // Boolean values true and false.
-  var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'True' : 'False';
+  var code = (block.getFieldValue('BOOL') == 'TRUE') ? '1' : '0';
   return [code, Blockly.c.ORDER_ATOMIC];
 };
 
 Blockly.c['logic_null'] = function(block) {
   // Null data type.
-  return ['None', Blockly.c.ORDER_ATOMIC];
+  return ['0', Blockly.c.ORDER_ATOMIC];
 };
 
 Blockly.c['logic_ternary'] = function(block) {
   // Ternary operator.
   var value_if = Blockly.c.valueToCode(block, 'IF',
-      Blockly.c.ORDER_CONDITIONAL) || 'False';
+      Blockly.c.ORDER_CONDITIONAL) || '0';
   var value_then = Blockly.c.valueToCode(block, 'THEN',
-      Blockly.c.ORDER_CONDITIONAL) || 'None';
+      Blockly.c.ORDER_CONDITIONAL) || '0';
   var value_else = Blockly.c.valueToCode(block, 'ELSE',
-      Blockly.c.ORDER_CONDITIONAL) || 'None';
-  var code = value_then + ' if ' + value_if + ' else ' + value_else;
+      Blockly.c.ORDER_CONDITIONAL) || '0';
+  var code = value_if + ' ? ' + value_then + ' : ' + value_else;
   return [code, Blockly.c.ORDER_CONDITIONAL];
 };

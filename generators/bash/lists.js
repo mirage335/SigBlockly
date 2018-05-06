@@ -31,7 +31,7 @@ goog.require('Blockly.bash');
 
 Blockly.bash['lists_create_empty'] = function(block) {
   // Create an empty list.
-  return ['[]', Blockly.bash.ORDER_ATOMIC];
+  return ['""', Blockly.bash.ORDER_ATOMIC];
 };
 
 Blockly.bash['lists_create_with'] = function(block) {
@@ -41,11 +41,14 @@ Blockly.bash['lists_create_with'] = function(block) {
     elements[i] = Blockly.bash.valueToCode(block, 'ADD' + i,
         Blockly.bash.ORDER_NONE) || 'None';
   }
-  var code = '[' + elements.join(', ') + ']';
+  var code = '(' + elements.join(' ') + ')';
   return [code, Blockly.bash.ORDER_ATOMIC];
 };
 
 Blockly.bash['lists_repeat'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Create a list with one element repeated.
   var item = Blockly.bash.valueToCode(block, 'ITEM',
       Blockly.bash.ORDER_NONE) || 'None';
@@ -56,6 +59,9 @@ Blockly.bash['lists_repeat'] = function(block) {
 };
 
 Blockly.bash['lists_length'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // String or array length.
   var list = Blockly.bash.valueToCode(block, 'VALUE',
       Blockly.bash.ORDER_NONE) || '[]';
@@ -63,6 +69,9 @@ Blockly.bash['lists_length'] = function(block) {
 };
 
 Blockly.bash['lists_isEmpty'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Is the string null or array empty?
   var list = Blockly.bash.valueToCode(block, 'VALUE',
       Blockly.bash.ORDER_NONE) || '[]';
@@ -71,6 +80,9 @@ Blockly.bash['lists_isEmpty'] = function(block) {
 };
 
 Blockly.bash['lists_indexOf'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Find an item in the list.
   var item = Blockly.bash.valueToCode(block, 'FIND',
       Blockly.bash.ORDER_NONE) || '[]';
@@ -108,6 +120,9 @@ Blockly.bash['lists_indexOf'] = function(block) {
 };
 
 Blockly.bash['lists_getIndex'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Get element at index.
   // Note: Until January 2013 this block did not have MODE or WHERE inputs.
   var mode = block.getFieldValue('MODE') || 'GET';
@@ -187,6 +202,9 @@ Blockly.bash['lists_getIndex'] = function(block) {
 };
 
 Blockly.bash['lists_setIndex'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Set element at index.
   // Note: Until February 2013 this block did not have MODE or WHERE inputs.
   var list = Blockly.bash.valueToCode(block, 'LIST',
@@ -258,6 +276,9 @@ Blockly.bash['lists_setIndex'] = function(block) {
 };
 
 Blockly.bash['lists_getSublist'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Get sublist.
   var list = Blockly.bash.valueToCode(block, 'LIST',
       Blockly.bash.ORDER_MEMBER) || '[]';
@@ -305,6 +326,9 @@ Blockly.bash['lists_getSublist'] = function(block) {
 };
 
 Blockly.bash['lists_sort'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Block for sorting a list.
   var list = (Blockly.bash.valueToCode(block, 'LIST',
       Blockly.bash.ORDER_NONE) || '[]');
@@ -334,6 +358,9 @@ Blockly.bash['lists_sort'] = function(block) {
 };
 
 Blockly.bash['lists_split'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Block for splitting text into a list, or joining a list into text.
   var mode = block.getFieldValue('MODE');
   if (mode == 'SPLIT') {
@@ -355,6 +382,9 @@ Blockly.bash['lists_split'] = function(block) {
 };
 
 Blockly.bash['lists_reverse'] = function(block) {
+  //Not implemented.
+  return [ 'garbage', Blockly.c.ORDER_ATOMIC ];
+  
   // Block for reversing a list.
   var list = Blockly.bash.valueToCode(block, 'LIST',
       Blockly.bash.ORDER_NONE) || '[]';

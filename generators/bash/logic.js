@@ -35,10 +35,10 @@ Blockly.bash['controls_if'] = function(block) {
   var code = '', branchCode, conditionCode;
   do {
     conditionCode = Blockly.bash.valueToCode(block, 'IF' + n,
-        Blockly.bash.ORDER_NONE) || 'False';
+        Blockly.bash.ORDER_NONE) || 'false';
     branchCode = Blockly.bash.statementToCode(block, 'DO' + n) ||
         Blockly.bash.PASS;
-    code += (n == 0 ? 'if ' : 'elif ' ) + conditionCode + ':\n' + branchCode;
+    code += (n == 0 ? 'if ' : 'elif ' ) + conditionCode + '\n' + (n == 0 ? 'then \n' : '' ) + branchCode;
 
     ++n;
   } while (block.getInput('IF' + n));
@@ -46,8 +46,9 @@ Blockly.bash['controls_if'] = function(block) {
   if (block.getInput('ELSE')) {
     branchCode = Blockly.bash.statementToCode(block, 'ELSE') ||
         Blockly.bash.PASS;
-    code += 'else:\n' + branchCode;
+    code += 'else\n' + branchCode;
   }
+  code += 'fi'
   return code;
 };
 
@@ -58,10 +59,10 @@ Blockly.bash['logic_compare'] = function(block) {
   var OPERATORS = {
     'EQ': '==',
     'NEQ': '!=',
-    'LT': '<',
-    'LTE': '<=',
-    'GT': '>',
-    'GTE': '>='
+    'LT': '-lt',
+    'LTE': '-le',
+    'GT': '-gt',
+    'GTE': '-ge'
   };
   var operator = OPERATORS[block.getFieldValue('OP')];
   var order = Blockly.bash.ORDER_RELATIONAL;
@@ -73,18 +74,18 @@ Blockly.bash['logic_compare'] = function(block) {
 
 Blockly.bash['logic_operation'] = function(block) {
   // Operations 'and', 'or'.
-  var operator = (block.getFieldValue('OP') == 'AND') ? 'and' : 'or';
+  var operator = (block.getFieldValue('OP') == 'AND') ? '&&' : '||';
   var order = (operator == 'and') ? Blockly.bash.ORDER_LOGICAL_AND :
       Blockly.bash.ORDER_LOGICAL_OR;
   var argument0 = Blockly.bash.valueToCode(block, 'A', order);
   var argument1 = Blockly.bash.valueToCode(block, 'B', order);
   if (!argument0 && !argument1) {
     // If there are no arguments, then the return value is false.
-    argument0 = 'False';
-    argument1 = 'False';
+    argument0 = 'false';
+    argument1 = 'false';
   } else {
     // Single missing arguments have no effect on the return value.
-    var defaultArgument = (operator == 'and') ? 'True' : 'False';
+    var defaultArgument = (operator == '&&') ? 'true' : 'false';
     if (!argument0) {
       argument0 = defaultArgument;
     }
@@ -99,30 +100,30 @@ Blockly.bash['logic_operation'] = function(block) {
 Blockly.bash['logic_negate'] = function(block) {
   // Negation.
   var argument0 = Blockly.bash.valueToCode(block, 'BOOL',
-      Blockly.bash.ORDER_LOGICAL_NOT) || 'True';
-  var code = 'not ' + argument0;
+      Blockly.bash.ORDER_LOGICAL_NOT) || 'true';
+  var code = '! ' + argument0;
   return [code, Blockly.bash.ORDER_LOGICAL_NOT];
 };
 
 Blockly.bash['logic_boolean'] = function(block) {
   // Boolean values true and false.
-  var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'True' : 'False';
+  var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false';
   return [code, Blockly.bash.ORDER_ATOMIC];
 };
 
 Blockly.bash['logic_null'] = function(block) {
   // Null data type.
-  return ['None', Blockly.bash.ORDER_ATOMIC];
+  return ['""', Blockly.bash.ORDER_ATOMIC];
 };
 
 Blockly.bash['logic_ternary'] = function(block) {
   // Ternary operator.
   var value_if = Blockly.bash.valueToCode(block, 'IF',
-      Blockly.bash.ORDER_CONDITIONAL) || 'False';
+      Blockly.bash.ORDER_CONDITIONAL) || 'false';
   var value_then = Blockly.bash.valueToCode(block, 'THEN',
-      Blockly.bash.ORDER_CONDITIONAL) || 'None';
+      Blockly.bash.ORDER_CONDITIONAL) || 'false';
   var value_else = Blockly.bash.valueToCode(block, 'ELSE',
-      Blockly.bash.ORDER_CONDITIONAL) || 'None';
-  var code = value_then + ' if ' + value_if + ' else ' + value_else;
+      Blockly.bash.ORDER_CONDITIONAL) || 'false';
+  var code = value_if + ' && ' + value_then + ' || ' + value_else;
   return [code, Blockly.bash.ORDER_CONDITIONAL];
 };
