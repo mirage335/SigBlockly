@@ -5,16 +5,95 @@
   <meta name="google" value="notranslate">
   <title>Blockly Demo:</title>
   <link rel="stylesheet" href="style.css">
-  <script src="/storage.js"></script>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../javascript_compressed.js"></script>
-  <script src="../../c_compressed.js"></script>
-  <script src="../../bash_compressed.js"></script>
-  <script src="../../python_compressed.js"></script>
-  <script src="../../php_compressed.js"></script>
-  <script src="../../lua_compressed.js"></script>
-  <script src="../../dart_compressed.js"></script>
+  
+  <!-- https://developers.google.com/blockly/guides/modify/web/building -->
+  
+  <!-- <script src="../../appengine/storage.js"></script> -->
+  
+  <script src="../../blockly_uncompressed.js"></script>
+  
+   <script src="../../blocks/arbitrary.js"></script>
+  
+  <script src="../../blocks/logic.js"></script>
+  <script src="../../blocks/loops.js"></script>
+  <script src="../../blocks/math.js"></script>
+  <script src="../../blocks/text.js"></script>
+  <script src="../../blocks/lists.js"></script>
+  <script src="../../blocks/colour.js"></script>
+  <script src="../../blocks/variables.js"></script>
+  <script src="../../blocks/procedures.js"></script>
+  
+  
+  <script src="../../generators/javascript.js"></script>
+  <script src="../../generators/javascript/logic.js"></script>
+  <script src="../../generators/javascript/loops.js"></script>
+  <script src="../../generators/javascript/math.js"></script>
+  <script src="../../generators/javascript/text.js"></script>
+  <script src="../../generators/javascript/lists.js"></script>
+  <script src="../../generators/javascript/colour.js"></script>
+  <script src="../../generators/javascript/variables.js"></script>
+  <script src="../../generators/javascript/procedures.js"></script>
+  
+  <script src="../../generators/c.js"></script>
+  <script src="../../generators/c/logic.js"></script>
+  <script src="../../generators/c/loops.js"></script>
+  <script src="../../generators/c/math.js"></script>
+  <script src="../../generators/c/text.js"></script>
+  <script src="../../generators/c/lists.js"></script>
+  <script src="../../generators/c/colour.js"></script>
+  <script src="../../generators/c/variables.js"></script>
+  <script src="../../generators/c/procedures.js"></script>
+  
+  <script src="../../generators/bash.js"></script>
+  <script src="../../generators/bash/logic.js"></script>
+  <script src="../../generators/bash/loops.js"></script>
+  <script src="../../generators/bash/math.js"></script>
+  <script src="../../generators/bash/text.js"></script>
+  <script src="../../generators/bash/lists.js"></script>
+  <script src="../../generators/bash/colour.js"></script>
+  <script src="../../generators/bash/variables.js"></script>
+  <script src="../../generators/bash/procedures.js"></script>
+  
+  <script src="../../generators/python.js"></script>
+  <script src="../../generators/python/logic.js"></script>
+  <script src="../../generators/python/loops.js"></script>
+  <script src="../../generators/python/math.js"></script>
+  <script src="../../generators/python/text.js"></script>
+  <script src="../../generators/python/lists.js"></script>
+  <script src="../../generators/python/colour.js"></script>
+  <script src="../../generators/python/variables.js"></script>
+  <script src="../../generators/python/procedures.js"></script>
+  
+  <script src="../../generators/php.js"></script>
+  <script src="../../generators/php/logic.js"></script>
+  <script src="../../generators/php/loops.js"></script>
+  <script src="../../generators/php/math.js"></script>
+  <script src="../../generators/php/text.js"></script>
+  <script src="../../generators/php/lists.js"></script>
+  <script src="../../generators/php/colour.js"></script>
+  <script src="../../generators/php/variables.js"></script>
+  <script src="../../generators/php/procedures.js"></script>
+  
+  <script src="../../generators/lua.js"></script>
+  <script src="../../generators/lua/logic.js"></script>
+  <script src="../../generators/lua/loops.js"></script>
+  <script src="../../generators/lua/math.js"></script>
+  <script src="../../generators/lua/text.js"></script>
+  <script src="../../generators/lua/lists.js"></script>
+  <script src="../../generators/lua/colour.js"></script>
+  <script src="../../generators/lua/variables.js"></script>
+  <script src="../../generators/lua/procedures.js"></script>
+  
+  <script src="../../generators/dart.js"></script>
+  <script src="../../generators/dart/logic.js"></script>
+  <script src="../../generators/dart/loops.js"></script>
+  <script src="../../generators/dart/math.js"></script>
+  <script src="../../generators/dart/text.js"></script>
+  <script src="../../generators/dart/lists.js"></script>
+  <script src="../../generators/dart/colour.js"></script>
+  <script src="../../generators/dart/variables.js"></script>
+  <script src="../../generators/dart/procedures.js"></script>
+  
   <script src="code.js"></script>
 </head>
 <body>
@@ -395,7 +474,10 @@
     
     <category name="Partial" colour="#a55b5b"></category>
     <sep></sep>
-    <category name="Arbitrary" colour="#805ba5"></category>
+    <category name="Arbitrary" colour="#805ba5">
+      <block type="arbitrary_code"></block>
+      <!--<block type="arbitrary_input"></block>-->
+    </category>
     <sep></sep>
     <category name="BASH" colour="#5ba5a5"></category>
     <category name="C" colour="#5ba5a5"></category>

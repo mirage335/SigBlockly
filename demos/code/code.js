@@ -200,7 +200,7 @@ Code.bindClick = function(el, func) {
  */
 Code.importPrettify = function() {
   var script = document.createElement('script');
-  script.setAttribute('src', 'https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js');
+  script.setAttribute('src', '../../../code-prettify/loader/run_prettify.js');
   document.head.appendChild(script);
 };
 
@@ -553,6 +553,7 @@ Code.discard = function() {
 // Load the Code demo's language strings.
 document.write('<script src="msg/' + Code.LANG + '.js"></script>\n');
 // Load Blockly's language strings.
-document.write('<script src="../../msg/js/' + Code.LANG + '.js"></script>\n');
+//document.write('<script src="../../msg/js/' + Code.LANG + '.js"></script>\n');
+document.write('<script src="../../msg/messages.js"></script>\n');
 
 window.addEventListener('load', Code.init);
