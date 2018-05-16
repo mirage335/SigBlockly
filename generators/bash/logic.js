@@ -68,7 +68,7 @@ Blockly.bash['logic_compare'] = function(block) {
   var order = Blockly.bash.ORDER_RELATIONAL;
   var argument0 = Blockly.bash.valueToCode(block, 'A', order) || '0';
   var argument1 = Blockly.bash.valueToCode(block, 'B', order) || '0';
-  var code = argument0 + ' ' + operator + ' ' + argument1;
+  var code = '[[ ' + argument0 + ' ' + operator + ' ' + argument1 + ']]';
   return [code, order];
 };
 

@@ -60,14 +60,13 @@ Blockly.c['controls_whileUntil'] = function(block) {
   var until = block.getFieldValue('MODE') == 'UNTIL';
   var argument0 = Blockly.c.valueToCode(block, 'BOOL',
       until ? Blockly.c.ORDER_LOGICAL_NOT :
-      Blockly.c.ORDER_NONE) || 'False';
+      Blockly.c.ORDER_NONE) || 'false';
   var branch = Blockly.c.statementToCode(block, 'DO');
-  branch = Blockly.c.addLoopTrap(branch, block.id) ||
-      Blockly.c.PASS;
+  branch = Blockly.c.addLoopTrap(branch, block.id);
   if (until) {
-    argument0 = 'not ' + argument0;
+    argument0 = '!' + argument0;
   }
-  return 'while ' + argument0 + ':\n' + branch;
+  return 'while (' + argument0 + ') {\n' + branch + '}\n';
 };
 
 Blockly.c['controls_for'] = function(block) {
@@ -75,127 +74,73 @@ Blockly.c['controls_for'] = function(block) {
   var variable0 = Blockly.c.variableDB_.getName(
       block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.c.valueToCode(block, 'FROM',
-      Blockly.c.ORDER_NONE) || '0';
+      Blockly.c.ORDER_ASSIGNMENT) || '0';
   var argument1 = Blockly.c.valueToCode(block, 'TO',
-      Blockly.c.ORDER_NONE) || '0';
+      Blockly.c.ORDER_ASSIGNMENT) || '0';
   var increment = Blockly.c.valueToCode(block, 'BY',
-      Blockly.c.ORDER_NONE) || '1';
+      Blockly.c.ORDER_ASSIGNMENT) || '1';
   var branch = Blockly.c.statementToCode(block, 'DO');
-  branch = Blockly.c.addLoopTrap(branch, block.id) ||
-      Blockly.c.PASS;
-
-  var code = '';
-  var range;
-
-  // Helper functions.
-  var defineUpRange = function() {
-    return Blockly.c.provideFunction_(
-        'upRange',
-        ['def ' + Blockly.c.FUNCTION_NAME_PLACEHOLDER_ +
-            '(start, stop, step):',
-         '  while start <= stop:',
-         '    yield start',
-         '    start += abs(step)']);
-  };
-  var defineDownRange = function() {
-    return Blockly.c.provideFunction_(
-        'downRange',
-        ['def ' + Blockly.c.FUNCTION_NAME_PLACEHOLDER_ +
-            '(start, stop, step):',
-         '  while start >= stop:',
-         '    yield start',
-         '    start -= abs(step)']);
-  };
-  // Arguments are legal Python code (numbers or strings returned by scrub()).
-  var generateUpDownRange = function(start, end, inc) {
-    return '(' + start + ' <= ' + end + ') and ' +
-        defineUpRange() + '(' + start + ', ' + end + ', ' + inc + ') or ' +
-        defineDownRange() + '(' + start + ', ' + end + ', ' + inc + ')';
-  };
-
+  branch = Blockly.c.addLoopTrap(branch, block.id);
+  var code;
   if (Blockly.isNumber(argument0) && Blockly.isNumber(argument1) &&
       Blockly.isNumber(increment)) {
-    // All parameters are simple numbers.
-    argument0 = parseFloat(argument0);
-    argument1 = parseFloat(argument1);
-    increment = Math.abs(parseFloat(increment));
-    if (argument0 % 1 === 0 && argument1 % 1 === 0 && increment % 1 === 0) {
-      // All parameters are integers.
-      if (argument0 <= argument1) {
-        // Count up.
-        argument1++;
-        if (argument0 == 0 && increment == 1) {
-          // If starting index is 0, omit it.
-          range = argument1;
-        } else {
-          range = argument0 + ', ' + argument1;
-        }
-        // If increment isn't 1, it must be explicit.
-        if (increment != 1) {
-          range += ', ' + increment;
-        }
-      } else {
-        // Count down.
-        argument1--;
-        range = argument0 + ', ' + argument1 + ', -' + increment;
-      }
-      range = 'range(' + range + ')';
+    // All arguments are simple numbers.
+    var up = parseFloat(argument0) <= parseFloat(argument1);
+    code = 'for (' + variable0 + ' = ' + argument0 + '; ' +
+        variable0 + (up ? ' <= ' : ' >= ') + argument1 + '; ' +
+        variable0;
+    var step = Math.abs(parseFloat(increment));
+    if (step == 1) {
+      code += up ? '++' : '--';
     } else {
-      // At least one of the parameters is not an integer.
-      if (argument0 < argument1) {
-        range = defineUpRange();
-      } else {
-        range = defineDownRange();
-      }
-      range += '(' + argument0 + ', ' + argument1 + ', ' + increment + ')';
+      code += (up ? ' += ' : ' -= ') + step;
     }
+    code += ') {\n' + branch + '}\n';
   } else {
+    code = '';
     // Cache non-trivial values to variables to prevent repeated look-ups.
-    var scrub = function(arg, suffix) {
-      if (Blockly.isNumber(arg)) {
-        // Simple number.
-        arg = parseFloat(arg);
-      } else if (arg.match(/^\w+$/)) {
-        // Variable.
-        arg = 'float(' + arg + ')';
-      } else {
-        // It's complicated.
-        var varName = Blockly.c.variableDB_.getDistinctName(
-            variable0 + suffix, Blockly.Variables.NAME_TYPE);
-        code += varName + ' = float(' + arg + ')\n';
-        arg = varName;
-      }
-      return arg;
-    };
-    var startVar = scrub(argument0, '_start');
-    var endVar = scrub(argument1, '_end');
-    var incVar = scrub(increment, '_inc');
-
-    if (typeof startVar == 'number' && typeof endVar == 'number') {
-      if (startVar < endVar) {
-        range = defineUpRange(startVar, endVar, increment);
-      } else {
-        range = defineDownRange(startVar, endVar, increment);
-      }
-    } else {
-      // We cannot determine direction statically.
-      range = generateUpDownRange(startVar, endVar, increment);
+    var startVar = argument0;
+    if (!argument0.match(/^\w+$/) && !Blockly.isNumber(argument0)) {
+      startVar = Blockly.c.variableDB_.getDistinctName(
+          variable0 + '_start', Blockly.Variables.NAME_TYPE);
+      code += 'var ' + startVar + ' = ' + argument0 + ';\n';
     }
+    var endVar = argument1;
+    if (!argument1.match(/^\w+$/) && !Blockly.isNumber(argument1)) {
+      var endVar = Blockly.c.variableDB_.getDistinctName(
+          variable0 + '_end', Blockly.Variables.NAME_TYPE);
+      code += 'var ' + endVar + ' = ' + argument1 + ';\n';
+    }
+    // Determine loop direction at start, in case one of the bounds
+    // changes during loop execution.
+    var incVar = Blockly.c.variableDB_.getDistinctName(
+        variable0 + '_inc', Blockly.Variables.NAME_TYPE);
+    code += 'var ' + incVar + ' = ';
+    if (Blockly.isNumber(increment)) {
+      code += Math.abs(increment) + ';\n';
+    } else {
+      code += 'Math.abs(' + increment + ');\n';
+    }
+    code += 'if (' + startVar + ' > ' + endVar + ') {\n';
+    code += Blockly.c.INDENT + incVar + ' = -' + incVar + ';\n';
+    code += '}\n';
+    code += 'for (' + variable0 + ' = ' + startVar + '; ' +
+        incVar + ' >= 0 ? ' +
+        variable0 + ' <= ' + endVar + ' : ' +
+        variable0 + ' >= ' + endVar + '; ' +
+        variable0 + ' += ' + incVar + ') {\n' +
+        branch + '}\n';
   }
-  code += 'for ' + variable0 + ' in ' + range + ':\n' + branch;
   return code;
 };
 
 Blockly.c['controls_forEach'] = function(block) {
-  // For each loop.
-  var variable0 = Blockly.c.variableDB_.getName(
-      block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
-  var argument0 = Blockly.c.valueToCode(block, 'LIST',
-      Blockly.c.ORDER_RELATIONAL) || '[]';
-  var branch = Blockly.c.statementToCode(block, 'DO');
-  branch = Blockly.c.addLoopTrap(branch, block.id) ||
-      Blockly.c.PASS;
-  var code = 'for ' + variable0 + ' in ' + argument0 + ':\n' + branch;
+  var code = '';
+  
+  code += '// CAUTION C does not have a direct foreach equivalent.\n'
+  code += '//https://stackoverflow.com/questions/400951/does-c-have-a-foreach-loop-construct\n'
+  code += 'BLOCKLY_ERROR_unsupported[-1];\n'
+  
   return code;
 };
 
@@ -203,9 +148,9 @@ Blockly.c['controls_flow_statements'] = function(block) {
   // Flow statements: continue, break.
   switch (block.getFieldValue('FLOW')) {
     case 'BREAK':
-      return 'break\n';
+      return 'break;\n';
     case 'CONTINUE':
-      return 'continue\n';
+      return 'continue;\n';
   }
   throw 'Unknown flow statement.';
 };
