@@ -45,5 +45,13 @@ Blockly.bash['bash_getlist'] = function(block) {
   var variable_variablename = Blockly.bash.variableDB_.getName(block.getFieldValue('variableName'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble bash into code variable.
   var code = '"${' + variable_variablename + '[@]}"';
-  return code;
+  return [code, Blockly.bash.ORDER_ATOMIC];
 }; 
+
+Blockly.bash['bash_addlist'] = function(block) {
+  var variable_variablename = Blockly.bash.variableDB_.getName(block.getFieldValue('variableName'), Blockly.Variables.NAME_TYPE);
+  var value_content = Blockly.bash.valueToCode(block, 'content', Blockly.bash.ORDER_ATOMIC);
+  // TODO: Assemble bash into code variable.
+  var code = variable_variablename + '+=(' + value_content + ')\n';
+  return code;
+};

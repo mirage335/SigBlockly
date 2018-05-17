@@ -71,3 +71,19 @@ Blockly.Blocks['bash_getlist'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['bash_addlist'] = {
+  init: function() {
+    this.appendValueInput("content")
+        .setCheck(null)
+        .appendField("BASH")
+        .appendField("list")
+        .appendField("+=")
+        .appendField(new Blockly.FieldVariable("item"), "variableName");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(255);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
