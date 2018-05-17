@@ -372,12 +372,17 @@ Blockly.bash['math_constrain'] = function(block) {
 
 Blockly.bash['math_random_int'] = function(block) {
   // Random integer between [X] and [Y].
-  Blockly.bash.definitions_['import_random'] = 'import random';
   var argument0 = Blockly.bash.valueToCode(block, 'FROM',
       Blockly.bash.ORDER_NONE) || '0';
   var argument1 = Blockly.bash.valueToCode(block, 'TO',
       Blockly.bash.ORDER_NONE) || '0';
-  var code = 'random.randint(' + argument0 + ', ' + argument1 + ')';
+  
+  var floor = argument0;
+  var ceiling = argument1;
+  var range = ceiling - floor + 1;
+  
+  
+  var code = 'expr $(expr $RANDOM % ' + range + ')' + ' + ' + floor;
   return [code, Blockly.bash.ORDER_FUNCTION_CALL];
 };
 

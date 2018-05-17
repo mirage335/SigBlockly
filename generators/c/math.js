@@ -372,12 +372,15 @@ Blockly.c['math_constrain'] = function(block) {
 
 Blockly.c['math_random_int'] = function(block) {
   // Random integer between [X] and [Y].
-  Blockly.c.definitions_['import_random'] = 'import random';
+  //https://stackoverflow.com/questions/822323/how-to-generate-a-random-number-in-c
+  //https://stackoverflow.com/questions/1202687/how-do-i-get-a-specific-range-of-numbers-from-rand
+  Blockly.c.definitions_['import_random'] = '#include &lt;time.h&gt;\n' + '#include &lt;stdlib.h&gt;\n' + '\n' + 'srand(time(NULL));   // should only be called once\n';
   var argument0 = Blockly.c.valueToCode(block, 'FROM',
       Blockly.c.ORDER_NONE) || '0';
   var argument1 = Blockly.c.valueToCode(block, 'TO',
       Blockly.c.ORDER_NONE) || '0';
-  var code = 'random.randint(' + argument0 + ', ' + argument1 + ')';
+  //var code = 'random.randint(' + argument0 + ', ' + argument1 + ')';
+  var code = 'rand() % (' + argument1 + ' + 1 - ' + argument0 + ') + ' + argument0;
   return [code, Blockly.c.ORDER_FUNCTION_CALL];
 };
 

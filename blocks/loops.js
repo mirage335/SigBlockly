@@ -206,8 +206,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "colour": "%{BKY_LOOPS_HUE}",
     "helpUrl": "%{BKY_CONTROLS_FLOW_STATEMENTS_HELPURL}",
     "extensions": [
-      "controls_flow_tooltip",
-      "controls_flow_in_loop_check"
+      "controls_flow_tooltip"//,
+      //"controls_flow_in_loop_check"
     ]
   }
 ]);  // END JSON EXTRACT (Do not delete this comment.)
