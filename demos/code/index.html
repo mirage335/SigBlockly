@@ -182,13 +182,7 @@
     </category>
     <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
       <!--
-      <block type="controls_repeat_ext">
-        <value name="TIMES">
-          <shadow type="math_number">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
-      </block>
+      
       -->
       <block type="controls_whileUntil"></block>
       <block type="controls_for">
@@ -485,7 +479,16 @@
     <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
     
     <category name="Partial" colour="#a55b5b">
-      <block type="controls_forEach"></block>
+    <block type="controls_forEach"></block>
+    
+    <block type="blockly_separator"></block>
+    <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
     </category>
     <sep></sep>
     <category name="Arbitrary" colour="#3c0035">
@@ -493,6 +496,12 @@
       <block type="blockly_separator"></block>
       <block type="arbitrary_code"></block>
       <block type="arbitrary_input"></block>
+      <!--
+      <block type="arbitrary_Boolean"></block>
+      <block type="arbitrary_Number"></block>
+      <block type="arbitrary_String"></block>
+      <block type="arbitrary_Array"></block>
+      -->
     </category>
     <sep></sep>
     <category name="BASH" colour="#003c2c"></category>

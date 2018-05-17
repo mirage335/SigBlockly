@@ -36,8 +36,8 @@ Blockly.JavaScript['arbitrary_code'] = function(block) {
 
 Blockly.JavaScript['arbitrary_input'] = function(block) {
   var text_arbitrarycode = block.getFieldValue('arbitraryInput');
-  var code = text_arbitrarycode + '\n';
-  return code;
+  var code = text_arbitrarycode;
+  return [code, Blockly.bash.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['blockly_comment'] = function(block) {

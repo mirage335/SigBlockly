@@ -50,6 +50,50 @@ Blockly.Blocks['arbitrary_input'] = {
   }
 };
 
+Blockly.Blocks['arbitrary_Boolean'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("bool"), "arbitraryInput");
+    this.setOutput(true, "Boolean");
+    //this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['arbitrary_Number'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("number"), "arbitraryInput");
+    this.setOutput(true, "Number");
+    //this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['arbitrary_String'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("string"), "arbitraryInput");
+    this.setOutput(true, "String");
+    //this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['arbitrary_Array'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("array"), "arbitraryInput");
+    this.setOutput(true, "Array");
+    //this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['blockly_comment'] = {
   init: function() {
     this.appendDummyInput()
