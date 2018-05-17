@@ -77,7 +77,7 @@ Blockly.c['procedures_callreturn'] = function(block) {
         Blockly.c.ORDER_NONE) || 'null';
   }
   var code = funcName + '(' + args.join(', ') + ')';
-  return [code, Blockly.c.ORDER_UNARY_POSTFIX];
+  return [code, Blockly.c.ORDER_FUNCTION_CALL];
 };
 
 Blockly.c['procedures_callnoreturn'] = function(block) {

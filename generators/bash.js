@@ -165,6 +165,8 @@ Blockly.bash.init = function(workspace) {
   var defvars = [];
   // Add developer variables (not created or named by the user).
   var devVarList = Blockly.Variables.allDeveloperVariables(workspace);
+  
+  //COMMENT
   for (var i = 0; i < devVarList.length; i++) {
     defvars.push(Blockly.bash.variableDB_.getName(devVarList[i],
         Blockly.Names.DEVELOPER_VARIABLE_TYPE) + '=""');
@@ -176,6 +178,8 @@ Blockly.bash.init = function(workspace) {
     defvars.push(Blockly.bash.variableDB_.getName(variables[i].getId(),
         Blockly.Variables.NAME_TYPE) + '=""');
   }
+  //COMMENT
+  
 
   Blockly.bash.definitions_['variables'] = defvars.join('\n');
 };

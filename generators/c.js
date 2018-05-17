@@ -166,15 +166,15 @@ Blockly.c.init = function(workspace) {
   // Add developer variables (not created or named by the user).
   var devVarList = Blockly.Variables.allDeveloperVariables(workspace);
   for (var i = 0; i < devVarList.length; i++) {
-    defvars.push(Blockly.c.variableDB_.getName(devVarList[i],
-        Blockly.Names.DEVELOPER_VARIABLE_TYPE) + ' = 0');
+    defvars.push('//type ' + Blockly.c.variableDB_.getName(devVarList[i],
+        Blockly.Names.DEVELOPER_VARIABLE_TYPE) + ' = 0;');
   }
 
   // Add user variables, but only ones that are being used.
   var variables = Blockly.Variables.allUsedVarModels(workspace);
   for (var i = 0; i < variables.length; i++) {
-    defvars.push(Blockly.c.variableDB_.getName(variables[i].getId(),
-        Blockly.Variables.NAME_TYPE) + ' = 0');
+    defvars.push('//type ' + Blockly.c.variableDB_.getName(variables[i].getId(),
+        Blockly.Variables.NAME_TYPE) + ' = 0;');
   }
 
   Blockly.c.definitions_['variables'] = defvars.join('\n');

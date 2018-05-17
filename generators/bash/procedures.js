@@ -74,9 +74,13 @@ Blockly.bash['procedures_callreturn'] = function(block) {
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
     args[i] = Blockly.bash.valueToCode(block, 'ARG' + i,
-        Blockly.bash.ORDER_COMMA) || 'null';
+        Blockly.bash.ORDER_NONE) || 'null';
   }
   var code = funcName;
+  if (args[0] != '') {
+    code += ' ' + args.join(' ');
+  }
+  code += '\n'
   return [code, Blockly.bash.ORDER_FUNCTION_CALL];
 };
 
@@ -87,9 +91,13 @@ Blockly.bash['procedures_callnoreturn'] = function(block) {
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
     args[i] = Blockly.bash.valueToCode(block, 'ARG' + i,
-        Blockly.bash.ORDER_COMMA) || 'null';
+        Blockly.bash.ORDER_NONE) || 'null';
   }
-  var code = funcName + '\n';
+  var code = funcName;
+  if (args[0] != '') {
+    code += ' ' + args.join(' ');
+  }
+  code += '\n'
   return code;
 };
 
@@ -97,7 +105,7 @@ Blockly.bash['procedures_ifreturn'] = function(block) {
   // Conditionally return value from a procedure.
   var condition = Blockly.bash.valueToCode(block, 'CONDITION',
       Blockly.bash.ORDER_NONE) || 'false';
-  var code = 'if (' + condition + ') {\n';
+  var code = 'if ' + condition + '\n' + 'then\n';
   if (block.hasReturnValue_) {
     var value = Blockly.bash.valueToCode(block, 'VALUE',
         Blockly.bash.ORDER_NONE) || 'null';
@@ -105,6 +113,6 @@ Blockly.bash['procedures_ifreturn'] = function(block) {
   } else {
     code += Blockly.bash.INDENT + 'return;\n';
   }
-  code += '}\n';
+  code += 'fi\n';
   return code;
 };

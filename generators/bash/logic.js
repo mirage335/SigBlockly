@@ -48,7 +48,7 @@ Blockly.bash['controls_if'] = function(block) {
         Blockly.bash.PASS;
     code += 'else\n' + branchCode;
   }
-  code += 'fi'
+  code += 'fi\n'
   return code;
 };
 

@@ -37,7 +37,7 @@ Blockly.JavaScript['arbitrary_code'] = function(block) {
 Blockly.JavaScript['arbitrary_input'] = function(block) {
   var text_arbitrarycode = block.getFieldValue('arbitraryInput');
   var code = text_arbitrarycode;
-  return [code, Blockly.bash.ORDER_ATOMIC];
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['blockly_comment'] = function(block) {
@@ -48,5 +48,11 @@ Blockly.JavaScript['blockly_comment'] = function(block) {
 
 Blockly.JavaScript['blockly_separator'] = function(block) {
   var code = '';
+  return code;
+};
+
+Blockly.JavaScript['arbitrary_converter'] = function(block) {
+  var value_content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_NONE);
+  var code = value_content + ';' + '\n';
   return code;
 };
