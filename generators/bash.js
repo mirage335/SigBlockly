@@ -258,7 +258,7 @@ Blockly.bash.scrub_ = function(block, code) {
     if (comment) {
       if (block.getProcedureDef) {
         // Use a comment block for function comments.
-        commentCode += '"""' + comment + '\n"""\n';
+        commentCode += '#' + comment + '\n';
       } else {
         commentCode += Blockly.bash.prefixLines(comment + '\n', '# ');
       }

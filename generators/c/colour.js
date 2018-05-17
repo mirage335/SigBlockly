@@ -31,7 +31,7 @@ goog.require('Blockly.c');
 
 Blockly.c['colour_picker'] = function(block) {
   // Colour picker.
-  var code = '\'' + block.getFieldValue('COLOUR') + '\'';
+  var code = '\"' + block.getFieldValue('COLOUR') + '\"';
   return [code, Blockly.c.ORDER_ATOMIC];
 };
 

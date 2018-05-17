@@ -50,3 +50,9 @@ Blockly.bash['blockly_separator'] = function(block) {
   var code = '';
   return code;
 };
+
+Blockly.bash['arbitrary_converter'] = function(block) {
+  var value_content = Blockly.bash.valueToCode(block, 'content', Blockly.bash.ORDER_NONE);
+  var code = value_content;
+  return code;
+};

@@ -63,7 +63,7 @@ Blockly.bash['math_arithmetic'] = function(block) {
   var order = tuple[1];
   var argument0 = Blockly.bash.valueToCode(block, 'A', order) || '0';
   var argument1 = Blockly.bash.valueToCode(block, 'B', order) || '0';
-  var code = argument0 + operator + argument1;
+  var code = 'echo $((' + argument0 + operator + argument1 + '))';
   return [code, order];
   // In case of 'DIVIDE', division between integers returns different results
   // in Python 2 and 3. However, is not an issue since Blockly does not
@@ -236,14 +236,11 @@ Blockly.bash['math_number_property'] = function(block) {
 
 Blockly.bash['math_change'] = function(block) {
   // Add to a variable in place.
-  Blockly.bash.definitions_['from_numbers_import_Number'] =
-      'from numbers import Number';
   var argument0 = Blockly.bash.valueToCode(block, 'DELTA',
       Blockly.bash.ORDER_ADDITIVE) || '0';
-  var varName = Blockly.bash.variableDB_.getName(block.getFieldValue('VAR'),
-      Blockly.Variables.NAME_TYPE);
-  return varName + ' = (' + varName + ' if isinstance(' + varName +
-      ', Number) else 0) + ' + argument0 + '\n';
+  var varName = Blockly.bash.variableDB_.getName(
+      block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+  return 'let ' + varName + '=' + varName + '+' + argument0 + '\n';
 };
 
 // Rounding functions have a single operand.
