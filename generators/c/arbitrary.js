@@ -28,8 +28,21 @@ goog.provide('Blockly.c.arbitrary');
 goog.require('Blockly.c');
 
 
-Blockly.JavaScript['arbitrary_code'] = function(block) {
+Blockly.c['arbitrary_code'] = function(block) {
   var text_arbitrarycode = block.getFieldValue('arbitraryCode');
   var code = text_arbitrarycode + '\n';
+  return code;
+};
+
+Blockly.c['arbitrary_input'] = function(block) {
+  var text_arbitrarycode = block.getFieldValue('arbitraryInput');
+  var code = text_arbitrarycode + '\n';
+  return code;
+};
+
+Blockly.c['arbitrary_html'] = function(block) {
+  var text_html = block.getFieldValue('html_tag');
+  
+  var code = '';
   return code;
 };

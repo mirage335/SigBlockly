@@ -23,6 +23,29 @@
  */
 'use strict';
 
+function syncHTML(event) {
+  if (event.type == Blockly.Events.CHANGE &&
+    event.element == 'field' &&
+    event.name == 'html_tag') {
+    
+    var text_html = Code.workspace.getBlockById(event.blockId).setFieldValue('html_tag');
+    
+    //alert(Code.workspace.getBlockById(event.blockId).getFieldValue('html_tag'));
+    
+    //Code.workspace.getBlockById(event.blockId).setFieldValue('x', 'html_tag');
+  
+  
+    //Code.workspace.getBlockById(event.blockId).setFieldValue('<b>test</b>', 'html_tag');
+    
+    Code.workspace.getBlockById(event.blockId).appendStatementInput('test');
+    
+    
+    
+    
+  }
+}
+
+
 /**
  * Create a namespace for the application.
  */
@@ -468,6 +491,8 @@ Code.init = function() {
 
   // Lazy-load the syntax-highlighting.
   window.setTimeout(Code.importPrettify, 1);
+  
+  Code.workspace.addChangeListener(syncHTML);
 };
 
 /**

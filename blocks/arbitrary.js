@@ -33,8 +33,36 @@ Blockly.Blocks['arbitrary_code'] = {
         .appendField(new Blockly.FieldTextInput("arbitraryCode"), "arbitraryCode");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    //this.setColour(290);
  this.setTooltip("");
  this.setHelpUrl("");
   }
 };
 
+Blockly.Blocks['arbitrary_input'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("arbitraryInput"), "arbitraryInput");
+    this.setOutput(true, null);
+    //this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
+  {
+    "type": "arbitrary_html",
+    "message0": " htmlTag %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "html_tag",
+        "text": "< tag > HTML < /tag >"
+      }
+    ],
+    "colour": 15,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+]);  // END JSON EXTRACT (Do not delete this comment.)
