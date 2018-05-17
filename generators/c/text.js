@@ -222,18 +222,10 @@ Blockly.c['text_print'] = function(block) {
   // Print statement.
   var msg = Blockly.c.valueToCode(block, 'TEXT',
       Blockly.c.ORDER_NONE) || '\'\'';
-  return 'print(' + msg + ')\n';
+  return 'printf(" + msg + ");\n';
 };
 
 Blockly.c['text_prompt_ext'] = function(block) {
-  // Prompt function.
-  var functionName = Blockly.c.provideFunction_(
-      'text_prompt',
-      ['def ' + Blockly.c.FUNCTION_NAME_PLACEHOLDER_ + '(msg):',
-       '  try:',
-       '    return raw_input(msg)',
-       '  except NameError:',
-       '    return input(msg)']);
   if (block.getField('TEXT')) {
     // Internal message.
     var msg = Blockly.c.quote_(block.getFieldValue('TEXT'));
@@ -242,11 +234,7 @@ Blockly.c['text_prompt_ext'] = function(block) {
     var msg = Blockly.c.valueToCode(block, 'TEXT',
         Blockly.c.ORDER_NONE) || '\'\'';
   }
-  var code = functionName + '(' + msg + ')';
-  var toNumber = block.getFieldValue('TYPE') == 'NUMBER';
-  if (toNumber) {
-    code = 'float(' + code + ')';
-  }
+  var code = '{ printf(' + msg + '); ' + 'getchar(); }';
   return [code, Blockly.c.ORDER_FUNCTION_CALL];
 };
 

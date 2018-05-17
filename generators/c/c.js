@@ -18,25 +18,25 @@
  */
 
 /**
- * @fileoverview Generating bash for text blocks.
+ * @fileoverview Generating c for text blocks.
  * @author q.neutron@gmail.com (Quynh Neutron)
  */
 'use strict';
 
-goog.provide('Blockly.bash.case');
+goog.provide('Blockly.c.c');
 
-goog.require('Blockly.bash');
+goog.require('Blockly.c');
 
-Blockly.bash['bash_case'] = function(block) {
-  var value_casedata = Blockly.bash.valueToCode(block, 'caseData', Blockly.bash.ORDER_ATOMIC);
-  var statements_caseactions = Blockly.bash.statementToCode(block, 'caseActions')  || '\n';
-  var code = 'case ' + value_casedata + ' in\n' + statements_caseactions + 'esac\n' ;
+Blockly.c['c_switch'] = function(block) {
+  var value_switchdata = Blockly.c.valueToCode(block, 'switchData', Blockly.c.ORDER_ATOMIC);
+  var statements_switchactions = Blockly.c.statementToCode(block, 'switchActions')  || '\n';
+  var code = 'switch (' + value_switchdata + ') {\n' + statements_switchactions + '}\n' ;
   return code;
 };
 
-Blockly.bash['bash_in'] = function(block) {
-  var value_indata = Blockly.bash.valueToCode(block, 'inData', Blockly.bash.ORDER_ATOMIC);
-  var statements_inactions = Blockly.bash.statementToCode(block, 'inActions') || '\n';
-  var code = '' + value_indata + ')\n' + statements_inactions + ';;\n';
+Blockly.c['c_case'] = function(block) {
+  var value_casedata = Blockly.c.valueToCode(block, 'caseData', Blockly.c.ORDER_ATOMIC);
+  var statements_caseactions = Blockly.c.statementToCode(block, 'caseActions') || '\n';
+  var code = 'case ' + value_casedata + ' :\n' + statements_caseactions;
   return code;
 }; 
