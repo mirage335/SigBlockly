@@ -302,9 +302,11 @@
       </block>
       <!--
       <block type="math_random_float"></block>
+      -->
     </category>
     <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">
       <block type="text"></block>
+      <!--
       <block type="text_join"></block>
       <block type="text_append">
         <value name="TEXT">
@@ -482,19 +484,23 @@
     <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
     <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
     
-    <category name="Partial" colour="#a55b5b"></category>
+    <category name="Partial" colour="#a55b5b">
+      <block type="controls_forEach"></block>
+    </category>
     <sep></sep>
-    <category name="Arbitrary" colour="#805ba5">
+    <category name="Arbitrary" colour="#3c0035">
+      <block type="blockly_comment"></block>
+      <block type="blockly_separator"></block>
       <block type="arbitrary_code"></block>
       <block type="arbitrary_input"></block>
     </category>
     <sep></sep>
-    <category name="BASH" colour="#5ba5a5"></category>
-    <category name="C" colour="#5ba5a5"></category>
+    <category name="BASH" colour="#003c2c"></category>
+    <category name="C" colour="#003c2c"></category>
     <sep></sep>
-    <category name="ub" colour="#5b80a5"></category>
-    <category name="ubVirt" colour="#5b6da5"></category>
-    <category name="ubSSH" colour="#5b6da5"></category>
+    <category name="ub" colour="#003f5d"></category>
+    <category name="ubVirt" colour="#001d32"></category>
+    <category name="ubSSH" colour="#001d32"></category>
     <sep></sep>
   </xml>
 

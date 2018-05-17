@@ -18,35 +18,35 @@
  */
 
 /**
- * @fileoverview Generating c for text blocks.
+ * @fileoverview Generating bash for text blocks.
  * @author q.neutron@gmail.com (Quynh Neutron)
  */
 'use strict';
 
-goog.provide('Blockly.c.arbitrary');
+goog.provide('Blockly.bash.arbitrary');
 
-goog.require('Blockly.c');
+goog.require('Blockly.bash');
 
 
-Blockly.c['arbitrary_code'] = function(block) {
+Blockly.bash['arbitrary_code'] = function(block) {
   var text_arbitrarycode = block.getFieldValue('arbitraryCode');
   var code = text_arbitrarycode + '\n';
   return code;
 };
 
-Blockly.c['arbitrary_input'] = function(block) {
+Blockly.bash['arbitrary_input'] = function(block) {
   var text_arbitrarycode = block.getFieldValue('arbitraryInput');
   var code = text_arbitrarycode + '\n';
   return code;
 };
 
-Blockly.c['blockly_comment'] = function(block) {
+Blockly.bash['blockly_comment'] = function(block) {
   var text_comment_text = block.getFieldValue('comment_text');
   var code = '';
   return code;
 };
 
-Blockly.c['blockly_separator'] = function(block) {
+Blockly.bash['blockly_separator'] = function(block) {
   var code = '';
   return code;
 };

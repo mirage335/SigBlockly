@@ -49,3 +49,28 @@ Blockly.Blocks['arbitrary_input'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['blockly_comment'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour("#333333"), "colour")
+        .appendField(new Blockly.FieldTextInput("comment"), "blockly_comment");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(15);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['blockly_separator'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("null", 125, 0, "*"));
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    //this.setColour(15);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
