@@ -49,20 +49,3 @@ Blockly.Blocks['arbitrary_input'] = {
  this.setHelpUrl("");
   }
 };
-
-Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
-  {
-    "type": "arbitrary_html",
-    "message0": " htmlTag %1",
-    "args0": [
-      {
-        "type": "field_input",
-        "name": "html_tag",
-        "text": "< tag > HTML < /tag >"
-      }
-    ],
-    "colour": 15,
-    "tooltip": "",
-    "helpUrl": ""
-  }
-]);  // END JSON EXTRACT (Do not delete this comment.)

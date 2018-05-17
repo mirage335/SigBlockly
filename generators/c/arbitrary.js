@@ -39,10 +39,3 @@ Blockly.c['arbitrary_input'] = function(block) {
   var code = text_arbitrarycode + '\n';
   return code;
 };
-
-Blockly.c['arbitrary_html'] = function(block) {
-  var text_html = block.getFieldValue('html_tag');
-  
-  var code = '';
-  return code;
-};
