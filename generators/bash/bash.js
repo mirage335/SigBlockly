@@ -110,7 +110,12 @@ Blockly.bash['bash_export'] = function(block) {
   return code;
 };
 
-
+Blockly.bash['bash_functions_arg'] = function(block) {
+  var value_name = Blockly.bash.valueToCode(block, 'data', Blockly.bash.ORDER_ATOMIC);
+  var dropdown_name = block.getFieldValue('punctuation');
+  var code = value_name + dropdown_name;
+  return code;
+};
 
 
 

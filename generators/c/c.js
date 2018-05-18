@@ -168,3 +168,9 @@ Blockly.c['c_memory_null'] = function(block) {
   return [code, Blockly.c.ORDER_ATOMIC];
 };
 
+Blockly.c['c_functions_arg'] = function(block) {
+  var value_name = Blockly.c.valueToCode(block, 'data', Blockly.c.ORDER_ATOMIC);
+  var dropdown_name = block.getFieldValue('punctuation');
+  var code = value_name + dropdown_name;
+  return code;
+};

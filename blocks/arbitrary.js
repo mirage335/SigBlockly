@@ -156,18 +156,3 @@ Blockly.Blocks['functions_return'] = {
  this.setHelpUrl("");
   }
 };
-
-Blockly.Blocks['arbitrary_functions_arg'] = {
-  init: function() {
-    this.appendValueInput("data")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["",""], ["\\w"," "], [", ",", "]]), "punctuation");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(315);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};

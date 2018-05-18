@@ -21,7 +21,21 @@
  * @fileoverview Custom blocks for Blockly.
  * @author mirage335
  */
-'use strict';
+'use strict';Blockly.Blocks['bash_functions_arg'] = {
+  init: function() {
+    this.appendValueInput("data")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], ["\\w"," "], [", ",", "]]), "punctuation");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 
 goog.provide('Blockly.Blocks.bash');
 
@@ -222,6 +236,20 @@ Blockly.Blocks['bash_export'] = {
   }
 };
 
+Blockly.Blocks['bash_functions_arg'] = {
+  init: function() {
+    this.appendValueInput("data")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["\\w"," "], ["",""], [", ",", "]]), "punctuation");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
 
 
 

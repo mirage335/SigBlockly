@@ -336,4 +336,18 @@ Blockly.Blocks['c_memory_null'] = {
   }
 };
 
+Blockly.Blocks['c_functions_arg'] = {
+  init: function() {
+    this.appendValueInput("data")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], [", ",", "]]), "punctuation");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
 
