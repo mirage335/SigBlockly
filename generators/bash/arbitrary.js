@@ -65,3 +65,18 @@ Blockly.bash['functions_return'] = function(block) {
   var code = "return" + value_varname + "\n";
   return code;
 };
+
+Blockly.bash['arbitrary_deconverter'] = function(block) {
+  var statements_name = Blockly.bash.statementToCode(block, 'NAME');
+  var code = statements_name;
+  code = code.trim();
+  //code = code.replace(/\n\n/g, " ");
+  return [code, Blockly.bash.ORDER_ATOMIC];
+};
+
+Blockly.bash['arbitrary_functions_arg'] = function(block) {
+  var value_name = Blockly.bash.valueToCode(block, 'data', Blockly.bash.ORDER_ATOMIC);
+  var dropdown_name = block.getFieldValue('punctuation');
+  var code = value_name + dropdown_name;
+  return code;
+};

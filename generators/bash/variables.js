@@ -42,5 +42,5 @@ Blockly.bash['variables_set'] = function(block) {
       Blockly.bash.ORDER_NONE) || '0';
   var varName = Blockly.bash.variableDB_.getName(block.getFieldValue('VAR'),
       Blockly.Variables.NAME_TYPE);
-  return varName + ' = ' + argument0 + '\n';
+  return varName + '=' + argument0 + '\n';
 };

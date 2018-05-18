@@ -61,13 +61,6 @@ Blockly.c['c_functions_declarearg'] = function(block) {
   return code;
 };
 
-Blockly.c['c_functions_arg'] = function(block) {
-  var value_name = Blockly.c.valueToCode(block, 'data', Blockly.c.ORDER_ATOMIC);
-  var dropdown_name = block.getFieldValue('punctuation');
-  var code = value_name + dropdown_name;
-  return code;
-};
-
 Blockly.c['c_functions_call'] = function(block) {
   var text_functionname = block.getFieldValue('functionName');
   var statements_name = Blockly.c.statementToCode(block, 'NAME');
@@ -75,3 +68,103 @@ Blockly.c['c_functions_call'] = function(block) {
   //return [code, Blockly.c.ORDER_NONE];
   return [code, Blockly.c.ORDER_ATOMIC];
 };
+
+Blockly.c['c_objects_declarevar'] = function(block) {
+  var value_var = Blockly.c.valueToCode(block, 'var', Blockly.c.ORDER_NONE);
+  var text_type = block.getFieldValue('type');
+  var value_name = Blockly.c.valueToCode(block, 'NAME', Blockly.c.ORDER_NONE);
+  var text_pointer = block.getFieldValue('pointer');
+  var code = text_type + ' ' + text_pointer + value_var + ' = ' + value_name + ';\n';
+  return code;
+};
+
+Blockly.c['c_objects_struct'] = function(block) {
+  var statements_variabledeclarations = Blockly.c.statementToCode(block, 'variableDeclarations') || '\n';;
+  var value_struct_name = Blockly.c.valueToCode(block, 'STRUCT_NAME', Blockly.c.ORDER_NONE);
+  var code = 'typedef struct {\n' + statements_variabledeclarations + '} ' + value_struct_name + ';\n';
+  return code;
+};
+
+Blockly.c['c_objects_struct_element'] = function(block) {
+  var value_struct_name = Blockly.c.valueToCode(block, 'STRUCT_NAME', Blockly.c.ORDER_NONE);
+  var text_elementname = block.getFieldValue('elementName');
+  var text_elementtype = block.getFieldValue('elementType');
+  var text_pointer = block.getFieldValue('pointer');
+  var code = text_elementtype + ' ' + text_pointer + text_elementname + ";\n";
+  return code;
+};
+
+Blockly.c['c_objects_structureelementset'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var text_pointerreference = block.getFieldValue('pointerReference');
+  var value_valuedata = Blockly.c.valueToCode(block, 'valueData', Blockly.c.ORDER_NONE);
+  var text_elementname = block.getFieldValue('elementName');
+  var text_operator = block.getFieldValue('operator');
+  var text_pointerreferenceconclusion = block.getFieldValue('pointerReferenceConclusion');
+  var code = text_pointerreference + value_varname + text_pointerreferenceconclusion + '.' + text_elementname + text_operator + value_valuedata + ";\n";
+  return code;
+};
+
+Blockly.c['c_objects_structureelementget'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var text_pointerreference = block.getFieldValue('pointerReference');
+  var text_pointerreferenceconclusion = block.getFieldValue('pointerReferenceConclusion');
+  var text_elementname = block.getFieldValue('elementName');
+  var code = text_pointerreference + value_varname + text_pointerreferenceconclusion + '.' + text_elementname;
+  return [code, Blockly.c.ORDER_NONE];
+};
+
+Blockly.c['c_objects_pointerget'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var text_pointerreference = block.getFieldValue('pointerReference');
+  var text_pointerreferenceconclusion = block.getFieldValue('pointerReferenceConclusion');
+  var code = text_pointerreference + value_varname + text_pointerreferenceconclusion;
+  return [code, Blockly.c.ORDER_NONE];
+};
+
+Blockly.c['c_objects_pointerset'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var text_pointerreference = block.getFieldValue('pointerReference');
+  var text_pointerreferenceconclusion = block.getFieldValue('pointerReferenceConclusion');
+  var text_operator = block.getFieldValue('operator');
+  var value_valuedata = Blockly.c.valueToCode(block, 'valueData', Blockly.c.ORDER_NONE);
+  var code = text_pointerreference + value_varname + text_pointerreferenceconclusion + text_operator + value_valuedata + ";\n";
+  return code;
+};
+
+Blockly.c['c_memory_mallocdeclarenormal'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var text_numberofarrayelements = block.getFieldValue('numberOfArrayElements');
+  var text_vartype = block.getFieldValue('varType');
+  var code = text_vartype + ' *' + value_varname + ' = malloc(' + text_numberofarrayelements + '* sizeof(*' + value_varname + "));\n";
+  return code;
+};
+
+Blockly.c['c_memory_malloccreatestructuralelement'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var text_elementname = block.getFieldValue('elementName');
+  var text_numberofarrayelements = block.getFieldValue('numberOfArrayElements');
+  var code = value_varname + '.' + text_elementname + ' = malloc(' + text_numberofarrayelements + ' * sizeof(' + value_varname + '.' + text_elementname + "));\n";
+  return code;
+};
+
+Blockly.c['c_memory_memset'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var value_valuedata = Blockly.c.valueToCode(block, 'valueData', Blockly.c.ORDER_NONE);
+  var text_numberofelements = block.getFieldValue('numberOfElements');
+  var text_vartype = block.getFieldValue('varType');
+  var code = 'memset(' + value_varname + ', ' + value_valuedata + ', (' + text_numberofelements + ' * sizeof(' + text_vartype + ")));\n";
+  return code;
+};
+
+Blockly.c['c_memory_freeandnull'] = function(block) {
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var code = 'free(' + value_varname + ');   ' + value_varname + " = NULL;\n";
+  return code;
+};
+
+Blockly.c['c_memory_null'] = function(block) {
+  var code = "NULL";
+  return [code, Blockly.c.ORDER_ATOMIC];
+};
+

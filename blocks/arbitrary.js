@@ -131,11 +131,38 @@ Blockly.Blocks['arbitrary_converter'] = {
   }
 };
 
+Blockly.Blocks['arbitrary_deconverter'] = {
+  init: function() {
+    this.appendStatementInput("NAME")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['functions_return'] = {
   init: function() {
     this.appendValueInput("varName")
         .setCheck(null)
         .appendField("return");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['arbitrary_functions_arg'] = {
+  init: function() {
+    this.appendValueInput("data")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], ["\\w"," "], [", ",", "]]), "punctuation");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

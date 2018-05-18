@@ -47,7 +47,7 @@ Blockly.bash['procedures_defreturn'] = function(block) {
   var returnValue = Blockly.bash.valueToCode(block, 'RETURN',
       Blockly.bash.ORDER_NONE) || '';
   if (returnValue) {
-    returnValue = Blockly.bash.INDENT + 'return ' + returnValue + ';\n';
+    returnValue = '\n' + Blockly.bash.INDENT + 'return ' + returnValue + '\n';
   }
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
@@ -74,14 +74,14 @@ Blockly.bash['procedures_callreturn'] = function(block) {
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
     args[i] = Blockly.bash.valueToCode(block, 'ARG' + i,
-        Blockly.bash.ORDER_NONE) || 'null';
+        Blockly.bash.ORDER_NONE) || '""';
   }
   var code = funcName;
   if (args[0] != '') {
     code += ' ' + args.join(' ');
   }
-  code += '\n'
-  return [code, Blockly.bash.ORDER_FUNCTION_CALL];
+  //code += '\n'
+  return [code, Blockly.bash.ORDER_ATOMIC];
 };
 
 Blockly.bash['procedures_callnoreturn'] = function(block) {
@@ -91,13 +91,13 @@ Blockly.bash['procedures_callnoreturn'] = function(block) {
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
     args[i] = Blockly.bash.valueToCode(block, 'ARG' + i,
-        Blockly.bash.ORDER_NONE) || 'null';
+        Blockly.bash.ORDER_NONE) || '""';
   }
   var code = funcName;
   if (args[0] != '') {
     code += ' ' + args.join(' ');
   }
-  code += '\n'
+  //code += '\n'
   return code;
 };
 
@@ -108,10 +108,10 @@ Blockly.bash['procedures_ifreturn'] = function(block) {
   var code = 'if ' + condition + '\n' + 'then\n';
   if (block.hasReturnValue_) {
     var value = Blockly.bash.valueToCode(block, 'VALUE',
-        Blockly.bash.ORDER_NONE) || 'null';
-    code += Blockly.bash.INDENT + 'return ' + value + '\n';
+        Blockly.bash.ORDER_NONE) || '""';
+    code += '\n' + Blockly.bash.INDENT + 'return ' + value + '\n';
   } else {
-    code += Blockly.bash.INDENT + 'return\n';
+    code += '\n' + Blockly.bash.INDENT + 'return\n';
   }
   code += 'fi\n';
   return code;

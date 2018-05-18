@@ -51,9 +51,39 @@ Blockly.Blocks['bash_in'] = {
         .appendField("in");
     this.appendStatementInput("inActions")
         .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([[";;",";;"], [";&",";&"]]), "punctuation");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_deref'] = {
+  init: function() {
+    this.appendValueInput("source")
+        .setCheck(null)
+        .appendField("\"$");
+    this.appendDummyInput()
+        .appendField("\"");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_deref_unquoted'] = {
+  init: function() {
+    this.appendValueInput("source")
+        .setCheck(null)
+        .appendField("$");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -87,3 +117,113 @@ Blockly.Blocks['bash_addlist'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['bash_command_substitution'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("$(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_pipe'] = {
+  init: function() {
+    this.appendValueInput("source")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("|");
+    this.appendValueInput("destination")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_specvar'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("\"$")
+        .appendField(new Blockly.FieldDropdown([["?","?"], ["0","0"], ["@","@"], ["1","1"], ["2","2"], ["3","3"], ["4","4"], ["5","5"], ["6","6"], ["7","7"], ["8","8"], ["9","9"], ["!","!"]]), "NAME");
+    this.appendDummyInput()
+        .appendField("\"");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_doublequote'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("\"");
+    this.appendDummyInput()
+        .appendField("\"");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_singlequote'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("'");
+    this.appendDummyInput()
+        .appendField("'");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_local'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("local");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['bash_export'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("export");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
+
+
+
+

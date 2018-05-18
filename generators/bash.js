@@ -168,14 +168,14 @@ Blockly.bash.init = function(workspace) {
   
   //COMMENT
   for (var i = 0; i < devVarList.length; i++) {
-    defvars.push(Blockly.bash.variableDB_.getName(devVarList[i],
+    defvars.push('#' + Blockly.bash.variableDB_.getName(devVarList[i],
         Blockly.Names.DEVELOPER_VARIABLE_TYPE) + '=""');
   }
 
   // Add user variables, but only ones that are being used.
   var variables = Blockly.Variables.allUsedVarModels(workspace);
   for (var i = 0; i < variables.length; i++) {
-    defvars.push(Blockly.bash.variableDB_.getName(variables[i].getId(),
+    defvars.push('#' + Blockly.bash.variableDB_.getName(variables[i].getId(),
         Blockly.Variables.NAME_TYPE) + '=""');
   }
   //COMMENT

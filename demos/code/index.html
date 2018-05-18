@@ -502,7 +502,9 @@
     </category>
     <sep></sep>
     <category name="Arbitrary" colour="#3c0035">
+      <block type="arbitrary_deconverter"></block>
       <block type="arbitrary_converter"></block>
+      <block type="arbitrary_functions_arg"></block>
       <block type="functions_return"></block>
       <block type="blockly_separator"></block>
       <block type="blockly_comment"></block>
@@ -518,11 +520,24 @@
     </category>
     <sep></sep>
     <category name="BASH" colour="#003c2c">
+    <block type="bash_export"></block>
+    <block type="bash_local"></block>
+    <block type="blockly_separator"></block>
     <block type="bash_case"></block>
     <block type="bash_in"></block>
     <block type="blockly_separator"></block>
+    <block type="bash_specvar"></block>
+    <block type="blockly_separator"></block>
+    <block type="bash_deref"></block>
     <block type="bash_addlist"></block>
     <block type="bash_getlist"></block>
+    <block type="blockly_separator"></block>
+    <block type="bash_pipe"></block>
+    <block type="bash_command_substitution"></block>
+    <block type="blockly_separator"></block>
+    <block type="bash_doublequote"></block>
+    <block type="bash_singlequote"></block>
+    <block type="bash_deref_unquoted"></block>
     </category>
     <category name="C" colour="#003c2c">
     <block type="c_switch"></block>
@@ -531,13 +546,27 @@
     <block type="c_functions_declarefunction"></block>
     <block type="c_functions_declarearg"></block>
     <block type="c_functions_call"></block>
-    <block type="c_functions_arg"></block>
-    <block type="blockly_separator"></block>
+    </category>
+    <category name="C_objects" colour="#00291e">
+    <block type="c_objects_declarevar"></block>
+    <block type="c_objects_struct"></block>
+    <block type="c_objects_struct_element"></block>
+    <block type="c_objects_structureelementset"></block>
+    <block type="c_objects_structureelementget"></block>
+    <block type="c_objects_pointerget"></block>
+    <block type="c_objects_pointerset"></block>
+    </category>
+    <category name="C_memory" colour="#00291e">
+    <block type="c_memory_mallocdeclarenormal"></block>
+    <block type="c_memory_malloccreatestructuralelement"></block>
+    <block type="c_memory_memset"></block>
+    <block type="c_memory_freeandnull"></block>
+    <block type="c_memory_null"></block>
     </category>
     <sep></sep>
     <category name="ub" colour="#003f5d"></category>
-    <category name="ubVirt" colour="#001d32"></category>
-    <category name="ubSSH" colour="#001d32"></category>
+    <category name="ub_Virt" colour="#001d32"></category>
+    <category name="ub_SSH" colour="#001d32"></category>
     <sep></sep>
   </xml>
 
