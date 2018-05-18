@@ -130,3 +130,17 @@ Blockly.Blocks['arbitrary_converter'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['functions_return'] = {
+  init: function() {
+    this.appendValueInput("varName")
+        .setCheck(null)
+        .appendField("return");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};

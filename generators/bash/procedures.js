@@ -109,9 +109,9 @@ Blockly.bash['procedures_ifreturn'] = function(block) {
   if (block.hasReturnValue_) {
     var value = Blockly.bash.valueToCode(block, 'VALUE',
         Blockly.bash.ORDER_NONE) || 'null';
-    code += Blockly.bash.INDENT + 'return ' + value + ';\n';
+    code += Blockly.bash.INDENT + 'return ' + value + '\n';
   } else {
-    code += Blockly.bash.INDENT + 'return;\n';
+    code += Blockly.bash.INDENT + 'return\n';
   }
   code += 'fi\n';
   return code;

@@ -56,3 +56,12 @@ Blockly.Lua['arbitrary_converter'] = function(block) {
   var code = value_content + ';' + '\n';
   return code;
 };
+
+Blockly.Lua['functions_return'] = function(block) {
+  var value_varname = Blockly.Lua.valueToCode(block, 'varName', Blockly.Lua.ORDER_NONE) || '';
+  if (value_varname != '') {
+    value_varname = ' ' + value_varname;
+  }
+  var code = "return" + value_varname + ";\n";
+  return code;
+};

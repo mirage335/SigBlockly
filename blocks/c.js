@@ -58,3 +58,77 @@ Blockly.Blocks['c_case'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['c_functions_declarefunction'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("int"), "returnType")
+        .appendField(new Blockly.FieldDropdown([["",""], ["*","*"]]), "pointer")
+        .appendField(new Blockly.FieldTextInput("functionName"), "functionName");
+    this.appendStatementInput("args")
+        .setCheck(null)
+        .appendField("( ... )");
+    this.appendStatementInput("NAME")
+        .setCheck(null)
+        .appendField("{ ... }");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['c_functions_declarearg'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("int"), "argType")
+        .appendField(new Blockly.FieldDropdown([["",""], ["*","*"]]), "pointer");
+    this.appendValueInput("varName")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("=");
+    this.appendValueInput("data")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], [", ",", "]]), "punctuation");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['c_functions_arg'] = {
+  init: function() {
+    this.appendValueInput("data")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], [", ",", "]]), "punctuation");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['c_functions_call'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("functionName"), "functionName");
+    this.appendStatementInput("NAME")
+        .setCheck(null)
+        .appendField("( ... )");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+

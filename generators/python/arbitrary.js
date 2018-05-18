@@ -56,3 +56,12 @@ Blockly.Python['arbitrary_converter'] = function(block) {
   var code = value_content + '\n';
   return code;
 };
+
+Blockly.Python['functions_return'] = function(block) {
+  var value_varname = Blockly.Python.valueToCode(block, 'varName', Blockly.Python.ORDER_NONE) || '';
+  if (value_varname != '') {
+    value_varname = ' ' + value_varname;
+  }
+  var code = "return" + value_varname + "\n";
+  return code;
+};

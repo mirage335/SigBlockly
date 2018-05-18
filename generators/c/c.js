@@ -40,3 +40,38 @@ Blockly.c['c_case'] = function(block) {
   var code = 'case ' + value_casedata + ' :\n' + statements_caseactions;
   return code;
 }; 
+
+Blockly.c['c_functions_declarefunction'] = function(block) {
+  var text_returntype = block.getFieldValue('returnType');
+  var text_functionname = block.getFieldValue('functionName');
+  var statements_args = Blockly.c.statementToCode(block, 'args') || '';
+  var statements_name = Blockly.c.statementToCode(block, 'NAME') || '\n';
+  var text_pointer = block.getFieldValue('pointer');
+  var code = text_returntype + ' ' + text_pointer + text_functionname + ' (' + statements_args + '  ) {\n' + statements_name + '}\n';
+  return code;
+};
+
+Blockly.c['c_functions_declarearg'] = function(block) {
+  var text_argtype = block.getFieldValue('argType');
+  var value_varname = Blockly.c.valueToCode(block, 'varName', Blockly.c.ORDER_NONE);
+  var value_data = Blockly.c.valueToCode(block, 'data', Blockly.c.ORDER_NONE);
+  var dropdown_punctuation = block.getFieldValue('punctuation');
+  var text_pointer = block.getFieldValue('pointer');
+  var code = text_argtype + ' ' + text_pointer + value_varname + ' = ' + value_data + dropdown_punctuation;
+  return code;
+};
+
+Blockly.c['c_functions_arg'] = function(block) {
+  var value_name = Blockly.c.valueToCode(block, 'data', Blockly.c.ORDER_ATOMIC);
+  var dropdown_name = block.getFieldValue('punctuation');
+  var code = value_name + dropdown_name;
+  return code;
+};
+
+Blockly.c['c_functions_call'] = function(block) {
+  var text_functionname = block.getFieldValue('functionName');
+  var statements_name = Blockly.c.statementToCode(block, 'NAME');
+  var code = text_functionname + '( ' + statements_name + ' )';
+  //return [code, Blockly.c.ORDER_NONE];
+  return [code, Blockly.c.ORDER_ATOMIC];
+};
