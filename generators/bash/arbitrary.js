@@ -69,6 +69,7 @@ Blockly.bash['functions_return'] = function(block) {
 Blockly.bash['arbitrary_deconverter'] = function(block) {
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
   var code = statements_name;
+  //code = code.replace(/;\n/g, "");
   code = code.trim();
   //code = code.replace(/\n\n/g, " ");
   return [code, Blockly.bash.ORDER_ATOMIC];

@@ -65,3 +65,12 @@ Blockly.Dart['functions_return'] = function(block) {
   var code = "return" + value_varname + ";\n";
   return code;
 };
+
+Blockly.Dart['arbitrary_deconverter'] = function(block) {
+  var statements_name = Blockly.Dart.statementToCode(block, 'NAME');
+  var code = statements_name;
+  code = code.replace(/;\n/g, "");
+  code = code.trim();
+  //code = code.replace(/\n\n/g, " ");
+  return [code, Blockly.Dart.ORDER_ATOMIC];
+};

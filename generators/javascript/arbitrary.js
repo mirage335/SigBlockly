@@ -2,7 +2,7 @@
  * Visual Blocks Language
  *
  * Copyright 2012 Google Inc.
- * http://blockly.googlecode.com/
+ * http://blockly.googlecode.JavaScriptom/
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Generating JavaScript for text blocks.
- * @author q.neutron@gmail.com (Quynh Neutron)
+ * @author q.neutron@gmail.JavaScriptom (Quynh Neutron)
  */
 'use strict';
 
@@ -64,4 +64,13 @@ Blockly.JavaScript['functions_return'] = function(block) {
   }
   var code = "return" + value_varname + ";\n";
   return code;
+};
+
+Blockly.JavaScript['arbitrary_deconverter'] = function(block) {
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  var code = statements_name;
+  code = code.replace(/;\n/g, "");
+  code = code.trim();
+  //code = code.replace(/\n\n/g, " ");
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
