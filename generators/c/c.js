@@ -44,7 +44,7 @@ Blockly.c['c_case'] = function(block) {
   }
   var code = 'case ' + value_casedata + ' :\n' + statements_caseactions + punctuation;
   return code;
-}; 
+};
 
 Blockly.c['c_functions_declarefunction'] = function(block) {
   var text_returntype = block.getFieldValue('returnType');
