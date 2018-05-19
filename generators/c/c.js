@@ -37,7 +37,12 @@ Blockly.c['c_switch'] = function(block) {
 Blockly.c['c_case'] = function(block) {
   var value_casedata = Blockly.c.valueToCode(block, 'caseData', Blockly.c.ORDER_ATOMIC);
   var statements_caseactions = Blockly.c.statementToCode(block, 'caseActions') || '\n';
-  var code = 'case ' + value_casedata + ' :\n' + statements_caseactions;
+  var dropdown_name = block.getFieldValue('punctuation');
+  var punctuation = dropdown_name;
+  if (punctuation != "") {
+     punctuation = punctuation + '\n'
+  }
+  var code = 'case ' + value_casedata + ' :\n' + statements_caseactions + punctuation;
   return code;
 }; 
 

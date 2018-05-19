@@ -51,6 +51,8 @@ Blockly.Blocks['c_case'] = {
         .appendField("case");
     this.appendStatementInput("caseActions")
         .setCheck(null);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["break;","break;"], ["",""]]), "punctuation");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
