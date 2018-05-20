@@ -27,6 +27,7 @@ goog.provide('Blockly.bash.arbitrary');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['arbitrary_code'] = function(block) {
   var text_arbitrarycode = block.getFieldValue('arbitraryCode');

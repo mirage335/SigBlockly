@@ -29,6 +29,7 @@ goog.provide('Blockly.bash.variablesDynamic');
 goog.require('Blockly.bash');
 goog.require('Blockly.bash.variables');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 // Python is dynamically typed.
 Blockly.bash['variables_get_dynamic'] = Blockly.bash['variables_get'];

@@ -28,6 +28,7 @@ goog.provide('Blockly.bash.texts');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['text'] = function(block) {
   // Text value.

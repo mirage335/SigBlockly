@@ -28,6 +28,7 @@ goog.provide('Blockly.bash.procedures');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['procedures_defreturn'] = function(block) {
   // Define a procedure with a return value.

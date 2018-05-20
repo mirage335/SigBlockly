@@ -28,6 +28,8 @@ goog.provide('Blockly.bash.variables');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
+
 
 Blockly.bash['variables_get'] = function(block) {
   // Variable getter.

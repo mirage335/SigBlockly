@@ -28,6 +28,7 @@ goog.provide('Blockly.bash.loops');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['controls_repeat_ext'] = function(block) {
   // Repeat n times.

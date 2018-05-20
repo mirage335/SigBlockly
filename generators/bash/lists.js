@@ -28,6 +28,7 @@ goog.provide('Blockly.bash.lists');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['lists_create_empty'] = function(block) {
   // Create an empty list.

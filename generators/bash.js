@@ -28,7 +28,6 @@ goog.provide('Blockly.bash');
 
 goog.require('Blockly.Generator');
 
-
 /**
  * Python code generator.
  * @type {!Blockly.Generator}

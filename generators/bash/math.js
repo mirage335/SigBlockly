@@ -28,6 +28,7 @@ goog.provide('Blockly.bash.math');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 // If any new block imports any library, add that library name here.
 Blockly.bash.addReservedWords('math,random,Number');

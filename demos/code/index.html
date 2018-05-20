@@ -16,6 +16,8 @@
   <script src="../../blocks/c.js"></script>
   <script src="../../blocks/bash.js"></script>
   
+  <script src="../../blocks/ub.js"></script>
+  
   <script src="../../blocks/logic.js"></script>
   <script src="../../blocks/loops.js"></script>
   <script src="../../blocks/math.js"></script>
@@ -107,6 +109,8 @@
   
   <script src="../../generators/c/c.js"></script>
   <script src="../../generators/bash/bash.js"></script>
+  
+  <script src="../../generators/bash/ub.js"></script>
   
   
   <script src="code.js"></script>
@@ -521,6 +525,7 @@
     <sep></sep>
     
     <category name="BASH" colour="#003c2c">
+    <block type="bash_functioncall"></block>
     <block type="bash_functions_arg"></block>
     <block type="blockly_separator"></block>
     <block type="bash_case"></block>
@@ -571,9 +576,22 @@
     <block type="c_memory_null"></block>
     </category>
     <sep></sep>
-    <category name="ub" colour="#003f5d"></category>
-    <category name="_virt" colour="#001d32"></category>
-    <category name="_net" colour="#001d32"></category>
+    <category name="ub" colour="#003f5d">
+      <block type="ub_scriptabsolutelocation"></block>
+    </category>
+    <category name="_virt" colour="#001d32">
+      <block type="ub_virt_editfakehome"></block>
+      <block type="ub_virt_userfakehome"></block>
+      <block type="ub_virt_userqemu"></block>
+      <block type="ub_virt_uservbox"></block>
+      <block type="ub_virt_userchroot"></block>
+      
+      
+      
+    </category>
+    <category name="_net" colour="#001d32">
+      <block type="_ub_here_ssh_config"></block>
+    </category>
     <sep></sep>
   </xml>
 

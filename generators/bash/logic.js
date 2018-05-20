@@ -28,6 +28,7 @@ goog.provide('Blockly.bash.logic');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['controls_if'] = function(block) {
   // If/elseif/else condition.

@@ -27,6 +27,8 @@ goog.provide('Blockly.bash.bash');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
+
 Blockly.bash['bash_case'] = function(block) {
   var value_casedata = Blockly.bash.valueToCode(block, 'caseData', Blockly.bash.ORDER_ATOMIC);
   var statements_caseactions = Blockly.bash.statementToCode(block, 'caseActions')  || '\n';
@@ -117,6 +119,12 @@ Blockly.bash['bash_functions_arg'] = function(block) {
   return code;
 };
 
+Blockly.bash['bash_functioncall'] = function(block) {
+  var text_functioncall = block.getFieldValue('functionCall');
+  var statements_name = Blockly.bash.statementToCode(block, 'NAME');
+  var code = text_functioncall + ' ' + statements_name.substring(2) + '\n';
+  return code;
+};
 
 
 

@@ -251,6 +251,20 @@ Blockly.Blocks['bash_functions_arg'] = {
   }
 };
 
+Blockly.Blocks['bash_functioncall'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("functionCall"), "functionCall");
+    this.appendStatementInput("NAME")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 
 
 

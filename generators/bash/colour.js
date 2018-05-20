@@ -28,6 +28,7 @@ goog.provide('Blockly.bash.colour');
 
 goog.require('Blockly.bash');
 
+Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['colour_picker'] = function(block) {
   // Colour picker.
