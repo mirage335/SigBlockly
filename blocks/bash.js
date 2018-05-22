@@ -265,6 +265,28 @@ Blockly.Blocks['bash_functioncall'] = {
   }
 };
 
+Blockly.Blocks['bash_here'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("_here_docName"), "hereDocName")
+        .appendField("() {");
+    this.appendDummyInput()
+        .appendField("cat << CZXWXcRMTo8EmM8i4d");
+    this.appendStatementInput("NAME")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("CZXWXcRMTo8EmM8i4d");
+    this.appendDummyInput()
+        .appendField("}");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
 
 
 
