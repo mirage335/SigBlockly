@@ -243,12 +243,12 @@ Blockly.bash.quote_ = function(string) {
 };
 
 /**
- * Common tasks for generating Python from blocks.
+ * Common tasks for generating Lua from blocks.
  * Handles comments for the specified block and any connected value blocks.
  * Calls any statements following this block.
  * @param {!Blockly.Block} block The current block.
- * @param {string} code The Python code created for this block.
- * @return {string} Python code with comments and subsequent blocks added.
+ * @param {string} code The Lua code created for this block.
+ * @return {string} Lua code with comments and subsequent blocks added.
  * @private
  */
 Blockly.bash.scrub_ = function(block, code) {
@@ -259,12 +259,7 @@ Blockly.bash.scrub_ = function(block, code) {
     var comment = block.getCommentText();
     comment = Blockly.utils.wrap(comment, Blockly.bash.COMMENT_WRAP - 3);
     if (comment) {
-      if (block.getProcedureDef) {
-        // Use a comment block for function comments.
-        commentCode += '#' + comment + '\n';
-      } else {
-        commentCode += Blockly.bash.prefixLines(comment + '\n', '# ');
-      }
+      commentCode += Blockly.bash.prefixLines(comment, '#') + '\n';
     }
     // Collect comments for all value arguments.
     // Don't collect comments for nested statements.
@@ -272,9 +267,9 @@ Blockly.bash.scrub_ = function(block, code) {
       if (block.inputList[i].type == Blockly.INPUT_VALUE) {
         var childBlock = block.inputList[i].connection.targetBlock();
         if (childBlock) {
-          var comment = Blockly.bash.allNestedComments(childBlock);
+          comment = Blockly.bash.allNestedComments(childBlock);
           if (comment) {
-            commentCode += Blockly.bash.prefixLines(comment, '# ');
+            commentCode += Blockly.bash.prefixLines(comment, '#');
           }
         }
       }
