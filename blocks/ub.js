@@ -441,3 +441,16 @@ Blockly.Blocks['_ub_scriptabsolutefolder'] = {
   }
 };
 
+Blockly.Blocks['_ub_scriptabsolutefolder_statements'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("\"$scriptAbsoluteFolder\"")
+        .appendField(new Blockly.FieldTextInput("/_local/setups/appExe"), "NAME");
+    this.appendStatementInput("NAME")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+}

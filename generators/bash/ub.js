@@ -299,6 +299,12 @@ Blockly.bash['_ub_scriptabsolutefolder'] = function(block) {
   return [code, Blockly.bash.ORDER_ATOMIC];
 };
 
-
+Blockly.bash['_ub_scriptabsolutefolder_statements'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var statements_name = Blockly.bash.statementToCode(block, 'NAME');
+  statements_name = statements_name.replace(/\n$/g, '');
+  var code = '\"$scriptAbsoluteFolder\"' + text_name + ' ' + statements_name.substring(1) + '\n';
+  return code;
+};
 
 
