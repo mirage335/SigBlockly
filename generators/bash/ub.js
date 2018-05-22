@@ -69,7 +69,7 @@ Blockly.bash['_ub_here_ssh_config'] = function(block) {
   Blockly.Generator.prototype.INDENT = '';
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
   Blockly.Generator.prototype.INDENT = '	';
-  var code = '_here_ssh_config() {\n' + 'cat << CZXWXcRMTo8EmM8i4d\n' + statements_name + 'CZXWXcRMTo8EmM8i4d\n' + '}\n\n';
+  var code = '_here_ssh_config() {\n' + '	cat << CZXWXcRMTo8EmM8i4d\n' + statements_name + 'CZXWXcRMTo8EmM8i4d\n' + '}\n\n';
   return code;
 };
 
@@ -86,7 +86,7 @@ Blockly.bash['_ub_ssh_header'] = function(block) {
   var dropdown_commentserveraliveinterval = block.getFieldValue('commentServerAliveInterval');
   var text_serveraliveinterval = block.getFieldValue('ServerAliveInterval');
   var dropdown_commentserveralivecountmax = block.getFieldValue('commentServerAliveCountMax');
-  var text_serverserveralivecountmax = block.getFieldValue('ServerServerAliveCountMax');
+  var text_serveralivecountmax = block.getFieldValue('ServerAliveCountMax');
   var dropdown_commentpubkeyauthentication = block.getFieldValue('commentPubkeyAuthentication');
   var dropdown_pubkeyauthentication = block.getFieldValue('PubkeyAuthentication');
   var dropdown_commentpasswordauthentication = block.getFieldValue('commentPasswordAuthentication');
@@ -110,7 +110,7 @@ Blockly.bash['_ub_ssh_header'] = function(block) {
   code += '	' + dropdown_commentconnecttimeout + 'ConnectTimeout ' + text_connecttimeout +  '\n';
   code += '	' + dropdown_commentconnectionattempts + 'ConnectionAttempts ' + text_connectionattempts +  '\n';
   code += '	' + dropdown_commentserveraliveinterval + 'ServerAliveInterval ' + text_serveraliveinterval +  '\n';
-  code += '	' + dropdown_commentserveralivecountmax + 'ServerServerAliveCountMax ' + text_serverserveralivecountmax +  '\n';
+  code += '	' + dropdown_commentserveralivecountmax + 'ServerAliveCountMax ' + text_serveralivecountmax +  '\n';
   code += '	' + dropdown_commentpubkeyauthentication + 'PubkeyAuthentication ' + dropdown_pubkeyauthentication +  '\n';
   code += '	' + dropdown_commentpasswordauthentication + 'PasswordAuthentication ' + dropdown_passwordauthentication +  '\n';
   code += '	' + dropdown_commentstricthostkeychecking + 'StrictHostKeyChecking ' + dropdown_stricthostkeychecking +  '\n';
@@ -136,8 +136,8 @@ Blockly.bash['_ub_ssh_host'] = function(block) {
   
   var code = '';
   
-  code += text_hostname + text_netname + '\n';
-  code += '	' + dropdown_commentproxycommand + 'ProxyCommand ' + text_proxycommand +  '\n';
+  code += 'Host ' + text_hostname + text_netname + '\n';
+  code += '	' + dropdown_commentproxycommand + 'ProxyCommand ' + '\"$sshDir/cautossh\" ' + text_proxycommand +  '\n';
   code += '	' + dropdown_commentuser + 'User ' + text_user +  '\n';
   code += '	' + dropdown_commentidentityfile + 'IdentityFile ' + text_identityfile +  '\n';
   

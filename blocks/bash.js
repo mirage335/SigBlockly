@@ -271,7 +271,8 @@ Blockly.Blocks['bash_here'] = {
         .appendField(new Blockly.FieldTextInput("_here_docName"), "hereDocName")
         .appendField("() {");
     this.appendDummyInput()
-        .appendField("cat << CZXWXcRMTo8EmM8i4d");
+        .appendField("          ")
+	.appendField("cat << CZXWXcRMTo8EmM8i4d");
     this.appendStatementInput("NAME")
         .setCheck(null);
     this.appendDummyInput()
