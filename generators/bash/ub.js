@@ -220,3 +220,76 @@ Blockly.bash['_ub_ssh_proxy_machine_network'] = function(block) {
   code += '}\n';
   return code;
 };
+
+Blockly.bash['_ub_get_reverseports'] = function(block) {
+  var statements_conditions = Blockly.bash.statementToCode(block, 'conditions');
+  var code = '';
+  code += '_get_reversePorts() {\n';
+  code += '	export matchingReversePorts\n';
+  code += '	matchingReversePorts=()\n';
+  code += '	export matchingEMBEDDED=\"false\"\n';
+  code += '\n';
+  code += '	local matched\n';
+  code += '\n';
+  code += '	local testHostname\n';
+  code += '	testHostname=\"$1\"\n';
+  code += '	[[ \"$testHostname\" == \"\" ]] && testHostname=$(hostname -s)\n';
+  code += '\n';
+  code += statements_conditions;
+  code += '\n'
+  code += '	export matchingReversePorts\n'
+  code += '}\n'
+  code += '_get_reversePorts\n'
+  code += 'export reversePorts=(\"${matchingReversePorts[@]}\")\n'
+  code += 'export EMBEDDED="$matchingEMBEDDED"\n'
+  return code;
+};
+
+Blockly.bash['_ub_netvars'] = function(block) {
+  var text_netname = block.getFieldValue('netName');
+  var text_gatewayname = block.getFieldValue('gatewayName');
+  var text_localsshport = block.getFieldValue('LOCALSSHPORT');
+  var code = '';
+  code += '# WARNING Must use unique netName!\n'
+  code += 'export netName=' + text_netname + '\n';
+  code += 'export gatewayName=' + text_gatewayname + '\n';
+  code += 'export LOCALSSHPORT=' + text_localsshport + '\n';
+  code += '\n';
+  return code;
+};
+
+Blockly.bash['_ub_autosshvars'] = function(block) {
+  var dropdown_commentautossh_first_poll = block.getFieldValue('commentAUTOSSH_FIRST_POLL');
+  var text_autossh_first_poll = block.getFieldValue('AUTOSSH_FIRST_POLL');
+  var dropdown_commentautossh_poll = block.getFieldValue('commentAUTOSSH_POLL');
+  var text_autossh_poll = block.getFieldValue('AUTOSSH_POLL');
+  var dropdown_commentautossh_gatetime_disable = block.getFieldValue('commentAUTOSSH_GATETIME_disable');
+  var text_autossh_gatetime_disable = block.getFieldValue('AUTOSSH_GATETIME_disable');
+  var dropdown_commentautossh_gatetime = block.getFieldValue('commentAUTOSSH_GATETIME');
+  var text_autossh_gatetime = block.getFieldValue('AUTOSSH_GATETIME');
+  var dropdown_commentautossh_port = block.getFieldValue('commentAUTOSSH_PORT');
+  var text_autossh_port = block.getFieldValue('AUTOSSH_PORT');
+  var dropdown_commentautossh_debug = block.getFieldValue('commentAUTOSSH_DEBUG');
+  var text_autossh_debug = block.getFieldValue('AUTOSSH_DEBUG');
+  var dropdown_commentautossh_loglevel = block.getFieldValue('commentAUTOSSH_LOGLEVEL');
+  var text_autossh_loglevel = block.getFieldValue('AUTOSSH_LOGLEVEL');
+  var code = '';
+  
+  code += dropdown_commentautossh_first_poll + 'export AUTOSSH_FIRST_POLL=' + text_autossh_first_poll + '\n';
+  code += dropdown_commentautossh_poll + 'export AUTOSSH_POLL=' + text_autossh_poll + '\n';
+  code += dropdown_commentautossh_gatetime_disable + 'export AUTOSSH_GATETIME=' + text_autossh_gatetime_disable + '\n';
+  code += dropdown_commentautossh_gatetime + 'export AUTOSSH_GATETIME=' + text_autossh_gatetime + '\n';
+  code += dropdown_commentautossh_port + 'export AUTOSSH_PORT=' + text_autossh_port + '\n';
+  code += dropdown_commentautossh_debug + 'export AUTOSSH_DEBUG=' + text_autossh_debug + '\n';
+  code += dropdown_commentautossh_loglevel + 'export AUTOSSH_LOGLEVEL=' + text_autossh_loglevel + '\n';
+  
+  code += '\n'
+  
+  return code;
+};
+
+
+
+
+
+

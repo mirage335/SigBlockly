@@ -343,7 +343,80 @@ Blockly.Blocks['_ub_ssh_proxy_machine_network'] = {
   }
 };
 
+Blockly.Blocks['_ub_get_reverseports'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("_get_reversePorts() { ...");
+    this.appendStatementInput("conditions")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("... }");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("Requires if conditions to add port matches to list. See example.");
+ this.setHelpUrl("");
+  }
+};
 
+Blockly.Blocks['_ub_netvars'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("# WARNING Must use unique netName!");
+    this.appendDummyInput()
+        .appendField("export netName=")
+        .appendField(new Blockly.FieldTextInput("default"), "netName");
+    this.appendDummyInput()
+        .appendField("export gatewayName=")
+        .appendField(new Blockly.FieldTextInput("gw-\"$netName\""), "gatewayName");
+    this.appendDummyInput()
+        .appendField("export LOCALSSHPORT=")
+        .appendField(new Blockly.FieldTextInput("22"), "LOCALSSHPORT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['_ub_autosshvars'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], ["#","#"]]), "commentAUTOSSH_FIRST_POLL")
+        .appendField("export AUTOSSH_FIRST_POLL=")
+        .appendField(new Blockly.FieldTextInput("45"), "AUTOSSH_FIRST_POLL");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], ["#","#"]]), "commentAUTOSSH_POLL")
+        .appendField("export AUTOSSH_POLL=")
+        .appendField(new Blockly.FieldTextInput("45"), "AUTOSSH_POLL");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["#","#"], ["",""]]), "commentAUTOSSH_GATETIME_disable")
+        .appendField("export AUTOSSH_GATETIME=")
+        .appendField(new Blockly.FieldTextInput("0"), "AUTOSSH_GATETIME_disable");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""], ["#","#"]]), "commentAUTOSSH_GATETIME")
+        .appendField("export AUTOSSH_GATETIME=")
+        .appendField(new Blockly.FieldTextInput("15"), "AUTOSSH_GATETIME");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["#","#"], ["",""]]), "commentAUTOSSH_PORT")
+        .appendField("export AUTOSSH_PORT=")
+        .appendField(new Blockly.FieldTextInput("0"), "AUTOSSH_PORT");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["#","#"], ["",""]]), "commentAUTOSSH_DEBUG")
+        .appendField("export AUTOSSH_DEBUG=")
+        .appendField(new Blockly.FieldTextInput("1"), "AUTOSSH_DEBUG");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["#","#"], ["",""]]), "commentAUTOSSH_LOGLEVEL")
+        .appendField("export AUTOSSH_LOGLEVEL=")
+        .appendField(new Blockly.FieldTextInput("7"), "AUTOSSH_LOGLEVEL");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
 
 
 
