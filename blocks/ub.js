@@ -431,3 +431,13 @@ Blockly.Blocks['_ub_call_checklan'] = {
   }
 };
 
+Blockly.Blocks['_ub_scriptabsolutefolder'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("\"$scriptAbsoluteFolder\"");
+    this.setOutput(true, null);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+

@@ -31,37 +31,37 @@ Blockly.Generator.prototype.INDENT = '	';
 
 Blockly.bash['ub_scriptabsolutelocation'] = function(block) {
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
-  var code = '\"$scriptAbsoluteLocation\" ' + statements_name.substring(2) + '\n';
+  var code = '\"$scriptAbsoluteLocation\" ' + statements_name.substring(1) + '\n';
   return code;
 };
 
 Blockly.bash['ub_virt_editfakehome'] = function(block) {
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
-  var code = '_editFakeHome ' + statements_name.substring(2) + '\n';
+  var code = '_editFakeHome ' + statements_name.substring(1) + '\n';
   return code;
 };
 
 Blockly.bash['ub_virt_userfakehome'] = function(block) {
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
-  var code = '_userFakeHome ' + statements_name.substring(2) + '\n';
+  var code = '_userFakeHome ' + statements_name.substring(1) + '\n';
   return code;
 };
 
 Blockly.bash['ub_virt_userqemu'] = function(block) {
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
-  var code = '_userQemu ' + statements_name.substring(2) + '\n';
+  var code = '_userQemu ' + statements_name.substring(1) + '\n';
   return code;
 };
 
 Blockly.bash['ub_virt_uservbox'] = function(block) {
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
-  var code = '_userVBox ' + statements_name.substring(2) + '\n';
+  var code = '_userVBox ' + statements_name.substring(1) + '\n';
   return code;
 };
 
 Blockly.bash['ub_virt_userchroot'] = function(block) {
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
-  var code = '_userChRoot ' + statements_name.substring(2) + '\n';
+  var code = '_userChRoot ' + statements_name.substring(1) + '\n';
   return code;
 };
 
@@ -288,7 +288,10 @@ Blockly.bash['_ub_autosshvars'] = function(block) {
   return code;
 };
 
-
+Blockly.bash['_ub_scriptabsolutefolder'] = function(block) {
+  var code = '\"$scriptAbsoluteFolder\"';
+  return [code, Blockly.bash.ORDER_ATOMIC];
+};
 
 
 
