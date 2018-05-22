@@ -69,7 +69,7 @@ Blockly.bash['_ub_here_ssh_config'] = function(block) {
   Blockly.Generator.prototype.INDENT = '';
   var statements_name = Blockly.bash.statementToCode(block, 'NAME');
   Blockly.Generator.prototype.INDENT = '	';
-  var code = '_here_ssh_config() {\n' + 'cat << CZXWXcRMTo8EmM8i4d\n' + statements_name + 'CZXWXcRMTo8EmM8i4d\n' + '}\n';
+  var code = '_here_ssh_config() {\n' + 'cat << CZXWXcRMTo8EmM8i4d\n' + statements_name + 'CZXWXcRMTo8EmM8i4d\n' + '}\n\n';
   return code;
 };
 
@@ -205,7 +205,7 @@ Blockly.bash['_ub_check_lan'] = function(block) {
   code += '_check_LAN_' + text_network + '() {\n';
   code += '	ip addr show | grep ' + text_name + ' > /dev/null 2>&1 && return 0\n';
   code += '	return 1\n';
-  code += '}\n';
+  code += '}\n\n';
   return code;
 };
 
@@ -217,7 +217,7 @@ Blockly.bash['_ub_ssh_proxy_machine_network'] = function(block) {
   code += '	_start\n\n'
   code += statements_name;
   code += '\n	_stop\n'
-  code += '}\n';
+  code += '}\n\n';
   return code;
 };
 
