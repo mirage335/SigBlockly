@@ -50,8 +50,8 @@ Blockly.Blocks['procedures_defnoreturn'] = {
         Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT) {
       this.setCommentText(Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT);
     }
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    //this.setPreviousStatement(true, null);
+    //this.setNextStatement(true, null);
     this.setColour(Blockly.Msg.PROCEDURES_HUE);
     this.setTooltip(Blockly.Msg.PROCEDURES_DEFNORETURN_TOOLTIP);
     this.setHelpUrl(Blockly.Msg.PROCEDURES_DEFNORETURN_HELPURL);
@@ -413,8 +413,8 @@ Blockly.Blocks['procedures_defreturn'] = {
         Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT) {
       this.setCommentText(Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT);
     }
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    //this.setPreviousStatement(true, null);
+    //this.setNextStatement(true, null);
     this.setColour(Blockly.Msg.PROCEDURES_HUE);
     this.setTooltip(Blockly.Msg.PROCEDURES_DEFRETURN_TOOLTIP);
     this.setHelpUrl(Blockly.Msg.PROCEDURES_DEFRETURN_HELPURL);
