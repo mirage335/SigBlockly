@@ -135,4 +135,9 @@ Blockly.bash['bash_here'] = function(block) {
   return code;
 };
 
+Blockly.bash['_ub_call_checklan'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var code = '_check_LAN_' + text_name;
+  return [code, Blockly.bash.ORDER_ATOMIC];
+};
 

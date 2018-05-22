@@ -418,5 +418,15 @@ Blockly.Blocks['_ub_autosshvars'] = {
   }
 };
 
-
+Blockly.Blocks['_ub_call_checklan'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("_check_LAN_")
+        .appendField(new Blockly.FieldTextInput("network"), "NAME");
+    this.setOutput(true, null);
+    this.setColour(315);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
 
